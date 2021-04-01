@@ -62,7 +62,7 @@ namespace ThesisWork
                         {
                             Hide();
                             ResponsibleForm responsible = new ResponsibleForm(user);
-                            responsible.Text = user.FCs+" - Ответственный по практике";
+                            responsible.Text = user.FCs+" - Ответственный по практикам";
                             responsible.Show();
                             break;
                         }
@@ -70,7 +70,7 @@ namespace ThesisWork
                         {
                             Hide();
                             HeadDepartamentForm departament = new HeadDepartamentForm(user);
-                            departament.Text = user.FCs+" - Зав.Кафедрой";
+                            departament.Text = user.FCs+" - Заведующий кафедрой";
                             departament.Show();
                             break;
                         }

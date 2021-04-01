@@ -59,5 +59,10 @@ namespace ThesisWork.Forms
             RedactCompetenceTableForm competenceTable = new RedactCompetenceTableForm();
             competenceTable.ShowDialog(); 
         }
+
+        private void RedactTeachers_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
