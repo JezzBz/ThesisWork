@@ -34,5 +34,13 @@ namespace ThesisWork.Forms
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Hide();
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
+            
+        }
     }
 }

@@ -16,5 +16,10 @@ namespace ThesisWork.Forms.ResponsibleForms
         {
             InitializeComponent();
         }
+
+        private void ChangeTable_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

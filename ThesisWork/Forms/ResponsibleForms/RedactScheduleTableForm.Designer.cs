@@ -30,7 +30,6 @@ namespace ThesisWork.Forms.ResponsibleForms
         private void InitializeComponent()
         {
             this.PracticeSchedule = new System.Windows.Forms.DataGridView();
-            this.ChangeTable = new System.Windows.Forms.Button();
             this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentsNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Vector = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +37,7 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.PracticeHourse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExamenHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangeTable = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PracticeSchedule)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,21 +59,13 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.ExamenHours,
             this.Dates});
             this.PracticeSchedule.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.PracticeSchedule.Location = new System.Drawing.Point(1, 89);
+            this.PracticeSchedule.Location = new System.Drawing.Point(1, 67);
+            this.PracticeSchedule.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PracticeSchedule.Name = "PracticeSchedule";
             this.PracticeSchedule.RowHeadersWidth = 51;
             this.PracticeSchedule.RowTemplate.Height = 29;
-            this.PracticeSchedule.Size = new System.Drawing.Size(1312, 449);
+            this.PracticeSchedule.Size = new System.Drawing.Size(1148, 337);
             this.PracticeSchedule.TabIndex = 1;
-            // 
-            // ChangeTable
-            // 
-            this.ChangeTable.Location = new System.Drawing.Point(545, 12);
-            this.ChangeTable.Name = "ChangeTable";
-            this.ChangeTable.Size = new System.Drawing.Size(225, 29);
-            this.ChangeTable.TabIndex = 2;
-            this.ChangeTable.Text = "Применить изменения";
-            this.ChangeTable.UseVisualStyleBackColor = true;
             // 
             // Group
             // 
@@ -117,13 +109,25 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.Dates.MinimumWidth = 6;
             this.Dates.Name = "Dates";
             // 
+            // ChangeTable
+            // 
+            this.ChangeTable.Location = new System.Drawing.Point(477, 9);
+            this.ChangeTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChangeTable.Name = "ChangeTable";
+            this.ChangeTable.Size = new System.Drawing.Size(197, 22);
+            this.ChangeTable.TabIndex = 2;
+            this.ChangeTable.Text = "Применить изменения";
+            this.ChangeTable.UseVisualStyleBackColor = true;
+            this.ChangeTable.Click += new System.EventHandler(this.ChangeTable_Click);
+            // 
             // RedactScheduleTableForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1313, 541);
+            this.ClientSize = new System.Drawing.Size(1149, 406);
             this.Controls.Add(this.ChangeTable);
             this.Controls.Add(this.PracticeSchedule);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "RedactScheduleTableForm";
             this.Text = "RedactPracticeTableForm";
             ((System.ComponentModel.ISupportInitialize)(this.PracticeSchedule)).EndInit();
