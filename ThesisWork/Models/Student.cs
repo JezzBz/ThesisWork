@@ -30,6 +30,10 @@ namespace ThesisWork.Models
         [Required]
         private string FCs { get; set; }
 
+        [Column("Уч. год")]
+        [Required]
+        public DateTime SudtingYear { get; set; }
+
         [Column("Номер группы")]
         [Required]
         public string GroupNumber { get; set; }
@@ -38,17 +42,19 @@ namespace ThesisWork.Models
         [Required]
         public int CourseNumber { get; set; }
 
-        [Column("Форма обучения")]
+        [Column("Отделение")]
         [Required]
-        public string EducationForm { get; set; }
+        public string Departament { get; set; }
 
-        [Column("Номер специальности")]
+        [Column("Направление")]
         [Required]
-        public string SpecialtyNumber { get; set; }
+        public string Vector { get; set; }
 
-        [Column("Иностранец")]
+        [Column("Староста")]
         [Required]
-        public string Foreigner{ get; set; }
+        public bool Mentor { get; set; }
+
+
 
 
     }

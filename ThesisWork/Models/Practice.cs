@@ -14,45 +14,24 @@ namespace ThesisWork.Models
         [Key]
         [Required]
         public int Id { get; set; }
-        [Column("Название компании")]
+        [Column("Название практики")]
         [Required]
         public string CompanyName { get; set; }
 
-        [Column("Индекс")]
+        [Column("Тип практики")]
         [Required]
-        public string Index { get; set; }
+        public string PracticeType { get; set; }
 
-        [Column("Регион")]
+        [Column("Семестр")]
         [Required]
-        public string Region { get; set; }
+        public string Semestr { get; set; }
 
-        [Column("Город")]
+        [Column("Вид практики")]
         [Required]
-        public string City { get; set; }
+        public string PracticeView { get; set; }
 
-        [Column("Улица")]
+        [Column("Кол-во недель")]
         [Required]
-        public string Street { get; set; }
-
-        [Column("Дом")]
-        [Required]
-        public string Building { get; set; }
-        [Column("Номер договора")]
-        [Required]
-        public string DocumentNumber { get; set; }
-
-        [Column("Должность руководителя предприятия")]
-        [Required]
-        public string HeadOfCompanyPost { get; set; }
-        [Column("ФИО руководителя предприятия")]
-        [Required]
-        public string HeadOfCompanyeFCs { get; set; }
-
-        [Column("ФИО Ответственнного лица")]
-        [Required]
-        public string ResponsiblePersonFcs { get; set; }
-        [Column("Должность Ответственнного лица")]
-        [Required]
-        public string ResponsiblePersonPost { get; set; }
+        public int WeeksNumber { get; set; }
     }
 }

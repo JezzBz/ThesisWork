@@ -25,7 +25,7 @@
     <Compile Update="Forms\ResponsibleForms\RedactScheduleTableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\ResponsibleForms\RedactSudentsTableForm.cs">
+    <Compile Update="Forms\ResponsibleForms\RedactStudentsTableForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\ResponsibleForms\RedactTeachersTableForm.cs">

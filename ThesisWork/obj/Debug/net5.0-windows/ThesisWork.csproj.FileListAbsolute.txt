@@ -62,5 +62,7 @@ C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\Thesi
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactScheduleTableForm.resources
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactCompetenceTableForm.resources
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactPracticeTableForm.resources
-C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactSudentsTableForm.resources
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactTeachersTableForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Debug\net5.0-windows\ExcelDataReader.dll
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Debug\net5.0-windows\ExcelDataReader.DataSet.dll
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactStudentsTableForm.resources

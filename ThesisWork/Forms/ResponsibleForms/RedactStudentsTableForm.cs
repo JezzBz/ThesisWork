@@ -3,32 +3,29 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ThesisWork.Models;
 using ThesisWork.Parsers;
 
 namespace ThesisWork.Forms.ResponsibleForms
 {
-    public partial class RedactScheduleTableForm : Form
+    public partial class RedactStudentsTableForm : Form
     {
-        public RedactScheduleTableForm()
+        public RedactStudentsTableForm()
         {
             InitializeComponent();
         }
 
-        private void ChangeTable_Click(object sender, EventArgs e)
+        private void RedactSudentsTableForm_Load(object sender, EventArgs e)
         {
 
         }
-        
-        private async void button1_Click(object sender, EventArgs e)
+
+        private void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog FileDialog = new OpenFileDialog();
             FileDialog.Filter = "Excel 97-15.0 WorkBook|*.xls*";
@@ -44,16 +41,11 @@ namespace ThesisWork.Forms.ResponsibleForms
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
 
-                        
-                        textFileName.Text = FileDialog.FileName;
-                       
                         DataSet result = reader.AsDataSet();
                         data = result.Tables;
-                        DataTable BakTable = data[0];
-
-                        PracticeSchedule schedule = new PracticeSchedule();
-                        await Task.Run(()=> ScheduleParser.ParseScheduleFromExcel(schedule, data[0].Rows));
-
+                        DataTable Table = data[0];
+                        StudentsParser parser = new StudentsParser();
+                        parser.ParseStudentsfromExcel(Table.Rows);
 
 
                     }

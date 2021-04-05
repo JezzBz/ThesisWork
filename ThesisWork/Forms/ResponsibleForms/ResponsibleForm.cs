@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using ThesisWork.Forms.ResponsibleForms;
 using ThesisWork.Models;
 
@@ -63,6 +64,12 @@ namespace ThesisWork.Forms
         private void RedactTeachers_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void RedactStudents_Click(object sender, EventArgs e)
+        {
+            RedactStudentsTableForm form = new RedactStudentsTableForm();
+            form.ShowDialog();
         }
     }
 }

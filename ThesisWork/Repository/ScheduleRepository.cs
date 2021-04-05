@@ -10,7 +10,7 @@ namespace ThesisWork.Repository
     class ScheduleRepository
     {
         private static readonly ApplicationContext DataBase = new ApplicationContext();
-        public  IEnumerable<PracticeSchedule> ScheduleInfo(string directorFcs) => DataBase.PracticeSchedule.Select(x => x).Where(x=>x.DirectorFcs == directorFcs);
+        public  IEnumerable<PracticeSchedule> ScheduleInfo(string directorFcs) => DataBase.PracticeSchedule.Select(x => x).Where(x=>x.HeadFcs == directorFcs);
 
           
        

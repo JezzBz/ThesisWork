@@ -14,6 +14,11 @@ namespace ThesisWork.Models
         [Key]
         public int Id { get; set; }
 
+        [Column("Граффик Id")]
+        [Required]
+        [ForeignKey("Граффик Id")]
+        public PracticeSchedule ScheduleId {get;set;}
+
         [Column("Квалификация")]
         [Required]
         public string Qalification { get; set; }
@@ -21,11 +26,6 @@ namespace ThesisWork.Models
         [Column("Описание")]
         [Required]
         public string Description { get; set; }
-        [Column("Номер направления подготовки ")]
-        [Required]
-        public string VectorNumber{ get; set; }
-        [Column("Название профиля")]
-        [Required]
-        public string ProfileName { get; set; }
+        
     }
 }

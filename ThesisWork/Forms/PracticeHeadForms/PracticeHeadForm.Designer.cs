@@ -62,12 +62,11 @@ namespace ThesisWork.Forms
             this.ExamenHours,
             this.Dates});
             this.PracticeSchedule.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.PracticeSchedule.Location = new System.Drawing.Point(-2, 175);
-            this.PracticeSchedule.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PracticeSchedule.Location = new System.Drawing.Point(-2, 233);
             this.PracticeSchedule.Name = "PracticeSchedule";
             this.PracticeSchedule.RowHeadersWidth = 51;
             this.PracticeSchedule.RowTemplate.Height = 29;
-            this.PracticeSchedule.Size = new System.Drawing.Size(1107, 321);
+            this.PracticeSchedule.Size = new System.Drawing.Size(1265, 428);
             this.PracticeSchedule.TabIndex = 0;
             // 
             // Group
@@ -121,57 +120,52 @@ namespace ThesisWork.Forms
             // 
             // PracticePlan
             // 
-            this.PracticePlan.Location = new System.Drawing.Point(49, 38);
-            this.PracticePlan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PracticePlan.Location = new System.Drawing.Point(56, 51);
             this.PracticePlan.Name = "PracticePlan";
-            this.PracticePlan.Size = new System.Drawing.Size(136, 39);
+            this.PracticePlan.Size = new System.Drawing.Size(155, 52);
             this.PracticePlan.TabIndex = 1;
             this.PracticePlan.Text = "План уч. нагрузки по практикам";
             this.PracticePlan.UseVisualStyleBackColor = true;
             // 
             // StudentsPattern
             // 
-            this.StudentsPattern.Location = new System.Drawing.Point(49, 91);
-            this.StudentsPattern.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.StudentsPattern.Location = new System.Drawing.Point(56, 121);
             this.StudentsPattern.Name = "StudentsPattern";
-            this.StudentsPattern.Size = new System.Drawing.Size(136, 42);
+            this.StudentsPattern.Size = new System.Drawing.Size(155, 56);
             this.StudentsPattern.TabIndex = 2;
             this.StudentsPattern.Text = "Шаблоны отчетов для студентов";
             this.StudentsPattern.UseVisualStyleBackColor = true;
             // 
             // Statement
             // 
-            this.Statement.Location = new System.Drawing.Point(211, 38);
-            this.Statement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Statement.Location = new System.Drawing.Point(241, 51);
             this.Statement.Name = "Statement";
-            this.Statement.Size = new System.Drawing.Size(136, 39);
+            this.Statement.Size = new System.Drawing.Size(155, 52);
             this.Statement.TabIndex = 3;
             this.Statement.Text = "Оценочные ведомости";
             this.Statement.UseVisualStyleBackColor = true;
             // 
             // Report
             // 
-            this.Report.Location = new System.Drawing.Point(211, 91);
-            this.Report.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Report.Location = new System.Drawing.Point(241, 121);
             this.Report.Name = "Report";
-            this.Report.Size = new System.Drawing.Size(136, 42);
+            this.Report.Size = new System.Drawing.Size(155, 56);
             this.Report.TabIndex = 4;
             this.Report.Text = "Отчёт руководителя практики";
             this.Report.UseVisualStyleBackColor = true;
             // 
             // PracticeHeadForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1104, 505);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
             this.Controls.Add(this.Report);
             this.Controls.Add(this.Statement);
             this.Controls.Add(this.StudentsPattern);
             this.Controls.Add(this.PracticePlan);
             this.Controls.Add(this.PracticeSchedule);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PracticeHeadForm";
-            this.Text = "PracticeHeadForm";
+            this.Text = "д.";
             this.Load += new System.EventHandler(this.PracticeHeadForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PracticeSchedule)).EndInit();
             this.ResumeLayout(false);

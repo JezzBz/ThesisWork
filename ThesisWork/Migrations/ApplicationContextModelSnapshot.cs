@@ -31,22 +31,17 @@ namespace ThesisWork.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Описание");
 
-                    b.Property<string>("ProfileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Название профиля");
-
                     b.Property<string>("Qalification")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Квалификация");
 
-                    b.Property<string>("VectorNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Номер направления подготовки ");
+                    b.Property<int>("Граффик Id")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Граффик Id");
 
                     b.ToTable("Компетенции");
                 });
@@ -58,60 +53,29 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Building")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Дом");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Город");
-
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Название компании");
+                        .HasColumnName("Название практики");
 
-                    b.Property<string>("DocumentNumber")
+                    b.Property<string>("PracticeType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Номер договора");
+                        .HasColumnName("Тип практики");
 
-                    b.Property<string>("HeadOfPracticeFCs")
+                    b.Property<string>("PracticeView")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ФИО руководителя предприятия");
+                        .HasColumnName("Вид практики");
 
-                    b.Property<string>("HeadOfPracticePost")
+                    b.Property<string>("Semestr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Должность руководителя предприятия");
+                        .HasColumnName("Семестр");
 
-                    b.Property<string>("Index")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Индекс");
-
-                    b.Property<string>("Region")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Регион");
-
-                    b.Property<string>("ResponsiblePersonFcs")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ФИО Ответственнного лица");
-
-                    b.Property<string>("ResponsiblePersonPost")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Должность Ответственнного лица");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Улица");
+                    b.Property<int>("WeeksNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("Кол-во недель");
 
                     b.HasKey("Id");
 
@@ -123,67 +87,45 @@ namespace ThesisWork.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasColumnName("Id Графика практики")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Course")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Курс");
+                    b.Property<DateTime>("EducationYear")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Уч. год");
 
-                    b.Property<string>("DirectorFcs")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ФИО руководителя");
-
-                    b.Property<string>("Duration")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Количество недель");
-
-                    b.Property<string>("EducationForm")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Форма обучения");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Дата конца");
 
                     b.Property<int>("ExamenHours")
                         .HasColumnType("int")
                         .HasColumnName("Часы на зачёт");
 
-                    b.Property<DateTime>("FinishDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Дата окончания");
+                    b.Property<string>("GroupNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GroupNumber")
+                    b.Property<string>("HeadFcs")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ФИО Рук.Практики");
+
+                    b.Property<int>("HoursClass")
                         .HasColumnType("int")
-                        .HasColumnName("Номер группы");
+                        .HasColumnName("Аудиторные часы");
 
-                    b.Property<int>("PracticeHours")
+                    b.Property<int>("HoursSRS")
                         .HasColumnType("int")
-                        .HasColumnName("Часы на практику");
+                        .HasColumnName("Часы СРС");
 
-                    b.Property<string>("PracticeKind")
+                    b.Property<int>("Id Практики")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SchedulePage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Вид практики");
-
-                    b.Property<string>("PracticeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Название практики");
-
-                    b.Property<string>("PracticeType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Тип практики");
-
-                    b.Property<string>("Profile")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Профиль");
-
-                    b.Property<int>("Semester")
-                        .HasColumnType("int")
-                        .HasColumnName("Семестр");
+                        .HasColumnName("Лист");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2")
@@ -198,11 +140,13 @@ namespace ThesisWork.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Направление");
 
-                    b.Property<int>("Year")
+                    b.Property<int>("WeeksNumber")
                         .HasColumnType("int")
-                        .HasColumnName("Учебный год");
+                        .HasColumnName("Кол-во недель");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id Практики");
 
                     b.ToTable("График практик");
                 });
@@ -217,20 +161,19 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Курс");
 
-                    b.Property<string>("EducationForm")
+                    b.Property<string>("Departament")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Форма обучения");
-
-                    b.Property<string>("Foreigner")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Иностранец");
+                        .HasColumnName("Отделение");
 
                     b.Property<string>("GroupNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Номер группы");
+
+                    b.Property<bool>("Mentor")
+                        .HasColumnType("bit")
+                        .HasColumnName("Староста");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -242,15 +185,19 @@ namespace ThesisWork.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Отчество");
 
-                    b.Property<string>("SpecialtyNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Номер специальности");
+                    b.Property<DateTime>("SudtingYear")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Уч. год");
 
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Фамилия");
+
+                    b.Property<string>("Vector")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Направление");
 
                     b.HasKey("GradeBookNumber");
 
@@ -263,6 +210,11 @@ namespace ThesisWork.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AcademicDegree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Уч. степень");
 
                     b.Property<string>("FCs")
                         .IsRequired()
@@ -277,7 +229,7 @@ namespace ThesisWork.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Уч. степень");
+                        .HasColumnName("Пароль");
 
                     b.Property<string>("Patronymic")
                         .IsRequired()
@@ -364,6 +316,28 @@ namespace ThesisWork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.Competence", b =>
+                {
+                    b.HasOne("ThesisWork.Models.PracticeSchedule", "ScheduleId")
+                        .WithMany()
+                        .HasForeignKey("Граффик Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ScheduleId");
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.PracticeSchedule", b =>
+                {
+                    b.HasOne("ThesisWork.Models.Practice", "PracticeId")
+                        .WithMany()
+                        .HasForeignKey("Id Практики")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PracticeId");
                 });
 #pragma warning restore 612, 618
         }
