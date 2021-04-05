@@ -31,8 +31,8 @@ namespace ThesisWork.Parsers
                 student.Surname = row[0].ToString();
                 student.Patronymic = row[2].ToString();
                 student.GradeBookNumber = row[3].ToString();
-                student.GroupNumber = row[5].ToString();
-                student.CourseNumber = int.Parse(row[4].ToString());
+                student.GroupNumber = row[4].ToString();
+                student.CourseNumber = int.Parse(row[5].ToString());
                 student.Vector = row[7].ToString();
                 student.Mentor = false;
                 student.Departament = "";
