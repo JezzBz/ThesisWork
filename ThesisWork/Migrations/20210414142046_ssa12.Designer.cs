@@ -10,8 +10,8 @@ using ThesisWork.Repository;
 namespace ThesisWork.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210404153010_Test1")]
-    partial class Test1
+    [Migration("20210414142046_ssa12")]
+    partial class ssa12
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,24 +28,43 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Описание");
-
-                    b.Property<string>("Qalification")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Квалификация");
-
-                    b.Property<int>("Граффик Id")
+                    b.Property<int?>("PracticeScheduleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ThisCompetence")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Компетенция");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Граффик Id");
+                    b.HasIndex("PracticeScheduleId");
 
                     b.ToTable("Компетенции");
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.MarksReport", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EducationYear")
+                        .HasColumnType("int")
+                        .HasColumnName("Учебный год");
+
+                    b.Property<string>("ExamenBookNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Mark")
+                        .HasColumnType("int")
+                        .HasColumnName("Оценка");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Оценочная ведомость");
                 });
 
             modelBuilder.Entity("ThesisWork.Models.Practice", b =>
@@ -55,7 +74,7 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Название практики");
@@ -84,6 +103,95 @@ namespace ThesisWork.Migrations
                     b.ToTable("Практики");
                 });
 
+            modelBuilder.Entity("ThesisWork.Models.PracticeBase", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Area")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Регион");
+
+                    b.Property<string>("Building")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Дом");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Город");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Название огранизации");
+
+                    b.Property<string>("DirectorFCs")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ФИО Руководителя предприятия");
+
+                    b.Property<string>("DirectorPos")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Должность руководителя предприятия");
+
+                    b.Property<string>("DocumentNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("№ Договора ");
+
+                    b.Property<DateTime>("EducationYear")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Уч. год");
+
+                    b.Property<string>("Group")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Группа");
+
+                    b.Property<string>("Index")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Индекс");
+
+                    b.Property<int?>("PracticeScheduleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResponsibleFCs")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ФИО ответственного от профильной организации");
+
+                    b.Property<string>("ResponsiblePost")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Должность ответственного от профильной организации");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Улица");
+
+                    b.Property<string>("StudentGradeBookNumber")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StudentSudtingYear")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PracticeScheduleId");
+
+                    b.HasIndex("StudentGradeBookNumber", "StudentSudtingYear");
+
+                    b.ToTable("PracticeBases");
+                });
+
             modelBuilder.Entity("ThesisWork.Models.PracticeSchedule", b =>
                 {
                     b.Property<int>("Id")
@@ -92,36 +200,38 @@ namespace ThesisWork.Migrations
                         .HasColumnName("Id Графика практики")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EducationYear")
-                        .HasColumnType("datetime2")
+                    b.Property<string>("EducationYear")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("Уч. год");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("Дата конца");
 
-                    b.Property<int>("ExamenHours")
-                        .HasColumnType("int")
+                    b.Property<float>("ExamenHours")
+                        .HasColumnType("real")
                         .HasColumnName("Часы на зачёт");
 
                     b.Property<string>("GroupNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("№ Группы");
 
                     b.Property<string>("HeadFcs")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ФИО Рук.Практики");
 
-                    b.Property<int>("HoursClass")
-                        .HasColumnType("int")
+                    b.Property<float>("HoursClass")
+                        .HasColumnType("real")
                         .HasColumnName("Аудиторные часы");
 
-                    b.Property<int>("HoursSRS")
-                        .HasColumnType("int")
+                    b.Property<float>("HoursSRS")
+                        .HasColumnType("real")
                         .HasColumnName("Часы СРС");
 
-                    b.Property<int>("Id Практики")
+                    b.Property<int?>("PracticeId")
                         .HasColumnType("int");
 
                     b.Property<string>("SchedulePage")
@@ -148,9 +258,60 @@ namespace ThesisWork.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id Практики");
+                    b.HasIndex("PracticeId");
 
                     b.ToTable("График практик");
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.Profile", b =>
+                {
+                    b.Property<string>("Group")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FGOS")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ФГОС");
+
+                    b.Property<string>("ProfileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Название профиля");
+
+                    b.Property<string>("Vector")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Направление");
+
+                    b.HasKey("Group");
+
+                    b.ToTable("Профиль");
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.Specialty", b =>
+                {
+                    b.Property<string>("Vector")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Направление");
+
+                    b.Property<string>("EducationForm")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Форма обучения");
+
+                    b.Property<string>("EducationLevel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Уровень образования");
+
+                    b.Property<string>("VectorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Наименование направления");
+
+                    b.HasKey("Vector");
+
+                    b.ToTable("Специальности");
                 });
 
             modelBuilder.Entity("ThesisWork.Models.Student", b =>
@@ -158,6 +319,10 @@ namespace ThesisWork.Migrations
                     b.Property<string>("GradeBookNumber")
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("Номер зачётной книжки");
+
+                    b.Property<string>("SudtingYear")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Уч. год");
 
                     b.Property<int>("CourseNumber")
                         .HasColumnType("int")
@@ -187,10 +352,6 @@ namespace ThesisWork.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Отчество");
 
-                    b.Property<DateTime>("SudtingYear")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("Уч. год");
-
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -201,7 +362,7 @@ namespace ThesisWork.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Направление");
 
-                    b.HasKey("GradeBookNumber");
+                    b.HasKey("GradeBookNumber", "SudtingYear");
 
                     b.ToTable("Студенты");
                 });
@@ -322,24 +483,35 @@ namespace ThesisWork.Migrations
 
             modelBuilder.Entity("ThesisWork.Models.Competence", b =>
                 {
-                    b.HasOne("ThesisWork.Models.PracticeSchedule", "ScheduleId")
+                    b.HasOne("ThesisWork.Models.PracticeSchedule", "PracticeSchedule")
                         .WithMany()
-                        .HasForeignKey("Граффик Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PracticeScheduleId");
 
-                    b.Navigation("ScheduleId");
+                    b.Navigation("PracticeSchedule");
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.PracticeBase", b =>
+                {
+                    b.HasOne("ThesisWork.Models.PracticeSchedule", "PracticeSchedule")
+                        .WithMany()
+                        .HasForeignKey("PracticeScheduleId");
+
+                    b.HasOne("ThesisWork.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentGradeBookNumber", "StudentSudtingYear");
+
+                    b.Navigation("PracticeSchedule");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("ThesisWork.Models.PracticeSchedule", b =>
                 {
-                    b.HasOne("ThesisWork.Models.Practice", "PracticeId")
+                    b.HasOne("ThesisWork.Models.Practice", "Practice")
                         .WithMany()
-                        .HasForeignKey("Id Практики")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PracticeId");
 
-                    b.Navigation("PracticeId");
+                    b.Navigation("Practice");
                 });
 #pragma warning restore 612, 618
         }

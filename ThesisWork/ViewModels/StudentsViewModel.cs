@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ThesisWork.Models;
 using ThesisWork.Repository;
 
 namespace ThesisWork.ViewModels
@@ -14,6 +15,37 @@ namespace ThesisWork.ViewModels
         {
             
             return repos.GetStudentsNumberByGroup(group);
+        }
+        public  bool Apply()
+        {
+            try
+            {
+                return repos.Save();
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+        }
+        public IEnumerable<Student> SelectAll()
+        {
+            return repos.GetAll();
+        }
+        public bool UpdateTable(IEnumerable<Student> students)
+        {
+            try
+            {
+                repos.UpdateTable(students);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+           
         }
     }
     

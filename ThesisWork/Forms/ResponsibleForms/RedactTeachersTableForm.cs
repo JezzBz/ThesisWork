@@ -21,5 +21,10 @@ namespace ThesisWork.Forms.ResponsibleForms
         {
 
         }
+
+        private void RedactTeachersTableForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

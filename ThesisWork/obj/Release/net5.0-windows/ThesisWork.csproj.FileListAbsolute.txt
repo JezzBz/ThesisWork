@@ -58,3 +58,12 @@ C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\The
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ref\ThesisWork.dll
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.pdb
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.genruntimeconfig.cache
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Release\net5.0-windows\ExcelDataReader.dll
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Release\net5.0-windows\ExcelDataReader.DataSet.dll
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactCompetenceTableForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactPracticeTableForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactScheduleTableForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactStudentsTableForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactTeachersTableForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.Forms.ResponsibleForms.UnchangedDialogForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Release\net5.0-windows\ThesisWork.csprojAssemblyReference.cache

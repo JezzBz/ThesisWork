@@ -151,6 +151,7 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.Controls.Add(this.dataGridView1);
             
             this.Text = "RedactTeachersTableForm";
+            this.Load += new System.EventHandler(this.RedactTeachersTableForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

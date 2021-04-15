@@ -9,20 +9,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThesisWork.Models;
 using ThesisWork.Parsers;
+using ThesisWork.ViewModels;
 
 namespace ThesisWork.Forms.ResponsibleForms
 {
     public partial class RedactStudentsTableForm : Form
     {
+        #region Variables
+        StudentsParser parser = new StudentsParser();
+        StudentsViewModel viewModel = new StudentsViewModel();
+        Label label1 = new Label();
+       
+        bool WasChanged = false;
+        #endregion
         public RedactStudentsTableForm()
         {
+
+            FormClosing += Form_Closing;
             InitializeComponent();
+            
         }
 
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            
+            if (WasChanged)
+            {
+
+                UnchangedDialogForm unchanged = new UnchangedDialogForm();
+
+                if (unchanged.ShowDialog() == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    WasChanged = false;
+                    unchanged.Dispose(); 
+                    Close();
+                }
+                
+            }
+        }
         private void RedactSudentsTableForm_Load(object sender, EventArgs e)
         {
-
+            button1.Enabled = false;
+            label1.AutoSize = true;
+            dataGridView1.DataSource = viewModel.SelectAll().ToList();
+            dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -33,24 +69,97 @@ namespace ThesisWork.Forms.ResponsibleForms
             DataTableCollection data;
             if (FileDialog.ShowDialog() == DialogResult.OK)
             {
-                using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
+                try
                 {
 
-
-
+               
+                using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
+                {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
                     {
-
+                        textBox1.Text = FileDialog.FileName;
                         DataSet result = reader.AsDataSet();
                         data = result.Tables;
                         DataTable Table = data[0];
-                        StudentsParser parser = new StudentsParser();
-                        parser.ParseStudentsfromExcel(Table.Rows);
-
+                        
+                        bool request=parser.ParseStudentsfromExcel(Table.Rows,FileDialog.FileName);
+                        if (request)
+                        {
+                            label1.Text = "";
+                            textBox1.BackColor = Color.Green;
+                            button1.Enabled = true;    
+                        }
+                        else
+                        {
+                            textBox1.BackColor = Color.Red;
+                            label1.Location = new Point(570, 55);
+                            label1.Text = "Невалидный файл";
+                            label1.ForeColor = Color.Red;
+                            label1.AutoSize = true;
+                            Controls.Add(label1);
+                            button1.Enabled = false;
+                        }
 
                     }
                 }
+                }
+                catch (IOException)
+                {
+                    textBox1.Text = "";
+                    label1.Location = new Point(530, 55);
+                    label1.Text = "Файл занят други процессом!";
+                    label1.ForeColor = Color.Red;
+                    label1.AutoSize = true;
+                    Controls.Add(label1);
+                }
             }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            if (viewModel.UpdateTable((IEnumerable<Student>)dataGridView1.DataSource) )
+            {
+                if (viewModel.Apply())
+                {
+                    label1.Location = new Point(600, 55);
+                    label1.Text = "";
+                    Controls.Add(label1);
+                    label1.Text = "Успешно";
+                    label1.ForeColor = Color.Green;
+                    Controls.Add(label1);
+                    dataGridView1.DataSource = viewModel.SelectAll().ToList();
+                    WasChanged = false;
+                }
+                
+            }
+            else
+            {
+               
+                label1.Location = new Point(555, 55);
+                label1.Text = "Ошибка обновления базы данных";
+                label1.ForeColor = Color.Red;
+                label1.AutoSize = true;
+                Controls.Add(label1);
+                WasChanged = true;
+            }
+            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+           
+        }
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            button1.Enabled = true;
+            WasChanged = true;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

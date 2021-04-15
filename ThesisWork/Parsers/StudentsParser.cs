@@ -12,33 +12,44 @@ namespace ThesisWork.Parsers
 {
     class StudentsParser
     {
-        public void ParseStudentsfromExcel(DataRowCollection rows)
+        public bool ParseStudentsfromExcel(DataRowCollection rows,string filename)
         {
+
             StudentRepository repos = new StudentRepository();
-            
-            foreach (DataRow row in rows)
+            try
             {
-                if (row.IsNull(0))
+
+                foreach (DataRow row in rows)
                 {
-                    break;
+                    if (row.IsNull(0))
+                    {
+                        break;
+                    }
+                    if (row[0].ToString().Contains("Фамилия"))
+                    {
+                        continue;
+                    }
+                    Student student = new Student();
+                    student.Name = row[1].ToString();
+                    student.Surname = row[0].ToString();
+                    student.Patronymic = row[2].ToString();
+                    student.GradeBookNumber = row[3].ToString();
+                    student.GroupNumber = row[4].ToString();
+                    student.CourseNumber = int.Parse(row[5].ToString());
+                    student.Vector = row[7].ToString();
+                    student.Mentor =row[8].ToString()=="Да"?true:false;
+                    student.Departament = row[6].ToString();
+                    student.SudtingYear = filename.Split("/")[filename.Split("/").Length-1].Split(".")[0].ToLower().Split("студенты")[1].Replace(" ","");
+                    repos.AddStudent(student);
+                    Debug.WriteLine(student.Name);
                 }
-                if (row[0].ToString().Contains("Фамилия"))
-                {
-                    continue;
-                }
-                Student student = new Student();
-                student.Name = row[1].ToString();
-                student.Surname = row[0].ToString();
-                student.Patronymic = row[2].ToString();
-                student.GradeBookNumber = row[3].ToString();
-                student.GroupNumber = row[4].ToString();
-                student.CourseNumber = int.Parse(row[5].ToString());
-                student.Vector = row[7].ToString();
-                student.Mentor = false;
-                student.Departament = "";
-                repos.AddStudent(student);
-                Debug.WriteLine(student.Name);
             }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            return true;
         }
     }
 }

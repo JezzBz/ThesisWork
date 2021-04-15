@@ -30,16 +30,9 @@ namespace ThesisWork.Forms.ResponsibleForms
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Patronymic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroupNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Course = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StudyForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VectorNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Foreigner = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,15 +45,6 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Surname,
-            this.Name,
-            this.Patronymic,
-            this.GroupNumber,
-            this.Course,
-            this.StudyForm,
-            this.VectorNumber,
-            this.Foreigner});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.Location = new System.Drawing.Point(3, 111);
             this.dataGridView1.Name = "dataGridView1";
@@ -68,54 +52,7 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.dataGridView1.RowTemplate.Height = 29;
             this.dataGridView1.Size = new System.Drawing.Size(1312, 449);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Фамилия";
-            this.Surname.MinimumWidth = 6;
-            this.Surname.Name = "Surname";
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Имя";
-            this.Name.MinimumWidth = 6;
-            this.Name.Name = "Name";
-            // 
-            // Patronymic
-            // 
-            this.Patronymic.HeaderText = "Отчество";
-            this.Patronymic.MinimumWidth = 6;
-            this.Patronymic.Name = "Patronymic";
-            // 
-            // GroupNumber
-            // 
-            this.GroupNumber.HeaderText = "НомерГруппы";
-            this.GroupNumber.MinimumWidth = 6;
-            this.GroupNumber.Name = "GroupNumber";
-            // 
-            // Course
-            // 
-            this.Course.HeaderText = "Курс";
-            this.Course.MinimumWidth = 6;
-            this.Course.Name = "Course";
-            // 
-            // StudyForm
-            // 
-            this.StudyForm.HeaderText = "Форма Обучения";
-            this.StudyForm.MinimumWidth = 6;
-            this.StudyForm.Name = "StudyForm";
-            // 
-            // VectorNumber
-            // 
-            this.VectorNumber.HeaderText = "Номер специальности";
-            this.VectorNumber.MinimumWidth = 6;
-            this.VectorNumber.Name = "VectorNumber";
-            // 
-            // Foreigner
-            // 
-            this.Foreigner.HeaderText = "Иностранец";
-            this.Foreigner.MinimumWidth = 6;
-            this.Foreigner.Name = "Foreigner";
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button1
             // 
@@ -125,10 +62,11 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.button1.TabIndex = 2;
             this.button1.Text = "Применить изменения";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(126, 34);
+            this.button2.Location = new System.Drawing.Point(370, 55);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(34, 29);
             this.button2.TabIndex = 3;
@@ -136,34 +74,38 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // RedactSudentsTableForm
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 55);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(352, 27);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // RedactStudentsTableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1313, 541);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
-            
-            this.Text = "RedactStidentsTableForm";
+            this.Name = "RedactStudentsTableForm";
+            this.Text = "Редактировать таблицу студентов";
             this.Load += new System.EventHandler(this.RedactSudentsTableForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Patronymic;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GroupNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Course;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudyForm;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VectorNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Foreigner;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

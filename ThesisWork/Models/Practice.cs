@@ -14,9 +14,10 @@ namespace ThesisWork.Models
         [Key]
         [Required]
         public int Id { get; set; }
+
         [Column("Название практики")]
         [Required]
-        public string CompanyName { get; set; }
+        public string Name { get; set; }
 
         [Column("Тип практики")]
         [Required]

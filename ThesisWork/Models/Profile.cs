@@ -11,7 +11,18 @@ namespace ThesisWork.Models
     [Table("Профиль")]
     class Profile
     {
-        //[Key]
-        //public string 
+        [Key]
+        public string Group { get; set; }
+        [Column("Направление")]
+        [Required]
+        public string Vector { get; set; }
+        [Column("Название профиля")]
+        [Required]
+        public string ProfileName { get; set; }
+        [Column("ФГОС")]
+        [Required]
+        public string FGOS { get; set; }
+
+
     }
 }
