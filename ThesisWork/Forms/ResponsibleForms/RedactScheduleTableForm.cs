@@ -23,16 +23,34 @@ namespace ThesisWork.Forms.ResponsibleForms
         PracticeRepository practiceRepository = new PracticeRepository();
         ScheduleRepository scheduleRepository = new ScheduleRepository();
         CompetenceRepository competenceRepository = new CompetenceRepository();
+        string fileName;
         
         public RedactScheduleTableForm()
         {
+            
             InitializeComponent();
+            
+
+
         }
 
         private void ChangeTable_Click(object sender, EventArgs e)
         {
             ScheduleRepository scheduleRepository = new ScheduleRepository();
+            DataTableCollection data;
+            using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
 
+                    DataSet result = reader.AsDataSet();
+                    data = result.Tables;
+                    DataTable BakTable = data[0];
+                    ScheduleParser.ParseScheduleFromExcel(data[0].Rows, practiceRepository, scheduleRepository, competenceRepository);
+                }
+
+
+            }
             practiceRepository.Save();
             scheduleRepository.Save();
             competenceRepository.Save();
@@ -45,30 +63,13 @@ namespace ThesisWork.Forms.ResponsibleForms
             OpenFileDialog FileDialog = new OpenFileDialog();
             FileDialog.Filter = "Excel 97-15.0 WorkBook|*.xls*";
 
-            DataTableCollection data;
+        
             if (FileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
                 {
-
-
-
-                    using (var reader = ExcelReaderFactory.CreateReader(stream))
-                    {
-                        
-
-                        textFileName.Text = FileDialog.FileName;
-                       
-                        DataSet result = reader.AsDataSet();
-                        data = result.Tables;
-                        DataTable BakTable = data[0];
-
-                        
-                         ScheduleParser.ParseScheduleFromExcel(data[0].Rows,practiceRepository,scheduleRepository,competenceRepository);
-
-
-
-                    }
+                    textFileName.Text = FileDialog.FileName;
+                    fileName = FileDialog.FileName;
                 }
             }
 
@@ -76,7 +77,8 @@ namespace ThesisWork.Forms.ResponsibleForms
 
         private void RedactScheduleTableForm_Load(object sender, EventArgs e)
         {
-
+            PracticeSchedule.ReadOnly = false;
+            PracticeSchedule.DataSource = scheduleRepository.SelectAll().ToList();
         }
     }
 }

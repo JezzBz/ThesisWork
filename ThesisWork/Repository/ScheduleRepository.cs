@@ -13,6 +13,7 @@ namespace ThesisWork.Repository
         private static readonly ApplicationContext DataBase = new ApplicationContext();
         public IEnumerable<PracticeSchedule> ScheduleInfo(string directorFcs) => DataBase.PracticeSchedule.Select(x => x).Where(x=>x.HeadFcs == directorFcs);
 
+        public IEnumerable<PracticeSchedule> SelectAll() => DataBase.PracticeSchedule.Select(x => x);
         public void SaveSchedule(PracticeSchedule schedule)
         {
             if (!DataBase.PracticeSchedule.Any(x=>x==schedule))

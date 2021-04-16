@@ -107,7 +107,7 @@ namespace ThesisWork.Forms.ResponsibleForms
                 {
                     textBox1.Text = "";
                     label1.Location = new Point(530, 55);
-                    label1.Text = "Файл занят други процессом!";
+                    label1.Text = "Файл занят другим процессом!";
                     label1.ForeColor = Color.Red;
                     label1.AutoSize = true;
                     Controls.Add(label1);
