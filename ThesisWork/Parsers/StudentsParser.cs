@@ -16,8 +16,8 @@ namespace ThesisWork.Parsers
         {
 
             StudentRepository repos = new StudentRepository();
-            //try
-            //{
+            try
+            {
 
                 foreach (DataRow row in rows)
                 {
@@ -38,14 +38,14 @@ namespace ThesisWork.Parsers
                     student.GroupNumber = row[4].ToString();
                     student.CourseNumber = int.Parse(row[5].ToString());
                     student.Vector = row[8].ToString();
-                    student.Mentor =row[7].ToString()=="Да"?true:false;
+                    student.Mentor =row[7].ToString().ToLower=="да"?true:false;
                     student.Departament = row[6].ToString();
                     student.SudtingYear = filename.Split("/")[filename.Split("/").Length-1].Split(".")[0].ToLower().Split("студенты")[1].Replace(" ","");
                     
                     repos.AddStudent(student);
                     Debug.WriteLine(student.Name);
                 }
-          /*  }
+            }
             catch (Exception)
             {
 
