@@ -50,7 +50,7 @@ namespace ThesisWork.Parsers
             {
 
                 return false;
-            }*/
+            }
             return true;
         }
     }
