@@ -26,7 +26,7 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PracticeScheduleId")
+                    b.Property<int>("PracticeScheduleId")
                         .HasColumnType("int");
 
                     b.Property<string>("ThisCompetence")
@@ -35,8 +35,6 @@ namespace ThesisWork.Migrations
                         .HasColumnName("Компетенция");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PracticeScheduleId");
 
                     b.ToTable("Компетенции");
                 });
@@ -229,7 +227,11 @@ namespace ThesisWork.Migrations
                         .HasColumnType("real")
                         .HasColumnName("Часы СРС");
 
-                    b.Property<int?>("PracticeId")
+                    b.Property<float>("HoursSum")
+                        .HasColumnType("real")
+                        .HasColumnName("Часы на практику");
+
+                    b.Property<int>("PracticeId")
                         .HasColumnType("int");
 
                     b.Property<string>("SchedulePage")
@@ -255,8 +257,6 @@ namespace ThesisWork.Migrations
                         .HasColumnName("Кол-во недель");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PracticeId");
 
                     b.ToTable("График практик");
                 });
@@ -479,15 +479,6 @@ namespace ThesisWork.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("ThesisWork.Models.Competence", b =>
-                {
-                    b.HasOne("ThesisWork.Models.PracticeSchedule", "PracticeSchedule")
-                        .WithMany()
-                        .HasForeignKey("PracticeScheduleId");
-
-                    b.Navigation("PracticeSchedule");
-                });
-
             modelBuilder.Entity("ThesisWork.Models.PracticeBase", b =>
                 {
                     b.HasOne("ThesisWork.Models.PracticeSchedule", "PracticeSchedule")
@@ -501,15 +492,6 @@ namespace ThesisWork.Migrations
                     b.Navigation("PracticeSchedule");
 
                     b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("ThesisWork.Models.PracticeSchedule", b =>
-                {
-                    b.HasOne("ThesisWork.Models.Practice", "Practice")
-                        .WithMany()
-                        .HasForeignKey("PracticeId");
-
-                    b.Navigation("Practice");
                 });
 #pragma warning restore 612, 618
         }

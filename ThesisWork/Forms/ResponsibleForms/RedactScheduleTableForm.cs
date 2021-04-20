@@ -24,6 +24,7 @@ namespace ThesisWork.Forms.ResponsibleForms
         ScheduleRepository scheduleRepository = new ScheduleRepository();
         CompetenceRepository competenceRepository = new CompetenceRepository();
         string fileName;
+        bool changeMarker;
         
         public RedactScheduleTableForm()
         {
@@ -36,25 +37,33 @@ namespace ThesisWork.Forms.ResponsibleForms
 
         private void ChangeTable_Click(object sender, EventArgs e)
         {
+            
+
+            
             ScheduleRepository scheduleRepository = new ScheduleRepository();
-            DataTableCollection data;
-            using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+            if (changeMarker)
             {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                DataTableCollection data;
+                using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
                 {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
 
-                    DataSet result = reader.AsDataSet();
-                    data = result.Tables;
-                    DataTable BakTable = data[0];
-                    ScheduleParser.ParseScheduleFromExcel(data[0].Rows, practiceRepository, scheduleRepository, competenceRepository);
+                        DataSet result = reader.AsDataSet();
+                        data = result.Tables;
+                        
+                        ScheduleParser.ParseScheduleFromExcel(data, practiceRepository, scheduleRepository, competenceRepository);
+                    }
+
+
                 }
-
-
             }
+         
             practiceRepository.Save();
             scheduleRepository.Save();
             competenceRepository.Save();
-
+         
+            
 
         }
 
@@ -62,7 +71,7 @@ namespace ThesisWork.Forms.ResponsibleForms
         {
             OpenFileDialog FileDialog = new OpenFileDialog();
             FileDialog.Filter = "Excel 97-15.0 WorkBook|*.xls*";
-
+            changeMarker=false;
         
             if (FileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -70,6 +79,7 @@ namespace ThesisWork.Forms.ResponsibleForms
                 {
                     textFileName.Text = FileDialog.FileName;
                     fileName = FileDialog.FileName;
+                    changeMarker = true;
                 }
             }
 

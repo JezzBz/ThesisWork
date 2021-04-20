@@ -5862,28 +5862,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Rail\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\vebgh\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rail\\Desktop\\ThesisWork\\parser2\\GIT\\ThesisWork\\ThesisWork\\ThesisWork.csproj",
+      "projectUniqueName": "C:\\Users\\vebgh\\source\\repos\\ThesisWork\\ThesisWork\\ThesisWork.csproj",
       "projectName": "ThesisWork",
-      "projectPath": "C:\\Users\\Rail\\Desktop\\ThesisWork\\parser2\\GIT\\ThesisWork\\ThesisWork\\ThesisWork.csproj",
-      "packagesPath": "C:\\Users\\Rail\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rail\\Desktop\\ThesisWork\\parser2\\GIT\\ThesisWork\\ThesisWork\\obj\\",
+      "projectPath": "C:\\Users\\vebgh\\source\\repos\\ThesisWork\\ThesisWork\\ThesisWork.csproj",
+      "packagesPath": "C:\\Users\\vebgh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vebgh\\source\\repos\\ThesisWork\\ThesisWork\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Rail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vebgh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows7.0"
@@ -5945,7 +5942,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -3,10 +3,50 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ThesisWork.Migrations
 {
-    public partial class ssa12 : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "График практик",
+                columns: table => new
+                {
+                    IdГрафикапрактики = table.Column<int>(name: "Id Графика практики", type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PracticeId = table.Column<int>(type: "int", nullable: false),
+                    Учгод = table.Column<string>(name: "Уч. год", type: "nvarchar(max)", nullable: false),
+                    Группы = table.Column<string>(name: "№ Группы", type: "nvarchar(max)", nullable: false),
+                    Колвостудентов = table.Column<int>(name: "Кол-во студентов", type: "int", nullable: false),
+                    ФИОРукПрактики = table.Column<string>(name: "ФИО Рук.Практики", type: "nvarchar(max)", nullable: false),
+                    Направление = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Датаначала = table.Column<DateTime>(name: "Дата начала", type: "datetime2", nullable: false),
+                    Датаконца = table.Column<DateTime>(name: "Дата конца", type: "datetime2", nullable: false),
+                    Колвонедель = table.Column<int>(name: "Кол-во недель", type: "int", nullable: false),
+                    Часынапрактику = table.Column<float>(name: "Часы на практику", type: "real", nullable: false),
+                    ЧасыСРС = table.Column<float>(name: "Часы СРС", type: "real", nullable: false),
+                    Аудиторныечасы = table.Column<float>(name: "Аудиторные часы", type: "real", nullable: false),
+                    Часыназачёт = table.Column<float>(name: "Часы на зачёт", type: "real", nullable: false),
+                    Лист = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_График практик", x => x.IdГрафикапрактики);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Компетенции",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PracticeScheduleId = table.Column<int>(type: "int", nullable: false),
+                    Компетенция = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Компетенции", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Оценочная ведомость",
                 columns: table => new
@@ -130,57 +170,6 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "График практик",
-                columns: table => new
-                {
-                    IdГрафикапрактики = table.Column<int>(name: "Id Графика практики", type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PracticeId = table.Column<int>(type: "int", nullable: true),
-                    Учгод = table.Column<string>(name: "Уч. год", type: "nvarchar(max)", nullable: false),
-                    Группы = table.Column<string>(name: "№ Группы", type: "nvarchar(max)", nullable: false),
-                    Колвостудентов = table.Column<int>(name: "Кол-во студентов", type: "int", nullable: false),
-                    ФИОРукПрактики = table.Column<string>(name: "ФИО Рук.Практики", type: "nvarchar(max)", nullable: false),
-                    Направление = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Датаначала = table.Column<DateTime>(name: "Дата начала", type: "datetime2", nullable: false),
-                    Датаконца = table.Column<DateTime>(name: "Дата конца", type: "datetime2", nullable: false),
-                    Колвонедель = table.Column<int>(name: "Кол-во недель", type: "int", nullable: false),
-                    ЧасыСРС = table.Column<float>(name: "Часы СРС", type: "real", nullable: false),
-                    Аудиторныечасы = table.Column<float>(name: "Аудиторные часы", type: "real", nullable: false),
-                    Часыназачёт = table.Column<float>(name: "Часы на зачёт", type: "real", nullable: false),
-                    Лист = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_График практик", x => x.IdГрафикапрактики);
-                    table.ForeignKey(
-                        name: "FK_График практик_Практики_PracticeId",
-                        column: x => x.PracticeId,
-                        principalTable: "Практики",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Компетенции",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PracticeScheduleId = table.Column<int>(type: "int", nullable: true),
-                    Компетенция = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Компетенции", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Компетенции_График практик_PracticeScheduleId",
-                        column: x => x.PracticeScheduleId,
-                        principalTable: "График практик",
-                        principalColumn: "Id Графика практики",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PracticeBases",
                 columns: table => new
                 {
@@ -221,16 +210,6 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_График практик_PracticeId",
-                table: "График практик",
-                column: "PracticeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Компетенции_PracticeScheduleId",
-                table: "Компетенции",
-                column: "PracticeScheduleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PracticeBases_PracticeScheduleId",
                 table: "PracticeBases",
                 column: "PracticeScheduleId");
@@ -248,6 +227,9 @@ namespace ThesisWork.Migrations
 
             migrationBuilder.DropTable(
                 name: "Оценочная ведомость");
+
+            migrationBuilder.DropTable(
+                name: "Практики");
 
             migrationBuilder.DropTable(
                 name: "Преподаватели");
@@ -269,9 +251,6 @@ namespace ThesisWork.Migrations
 
             migrationBuilder.DropTable(
                 name: "Студенты");
-
-            migrationBuilder.DropTable(
-                name: "Практики");
         }
     }
 }
