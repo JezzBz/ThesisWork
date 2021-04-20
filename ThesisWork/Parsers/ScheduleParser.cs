@@ -64,25 +64,32 @@ namespace ThesisWork.Parsers
                     schedule.EndDate = DateTime.ParseExact(row[4].ToString().ToLower().Split("по")[1].Replace(" ", "").Split("г")[0], "d.M.yyyy", null);
                     #region Hours
                     schedule.StudentsNumber = studentsViewModel.GetStudentsCountByGroup(schedule.GroupNumber);
+
+                    schedule.ExamenHours = (float)Math.Round(0.35 * schedule.StudentsNumber, 2);
+                    schedule.HoursClass = 4;
                     if (practice.PracticeType.ToLower()== "концентрированная")
                     {
+                   
                         if (schedule.StudentsNumber>15)
                         {
-                            schedule.HoursSRS = (float)Math.Round(2.5 * 6 * schedule.WeeksNumber,1);
+                            schedule.HoursSum = (float)Math.Round(2.5 * 6 * schedule.WeeksNumber, 2);
+             
+
                         }
                         else
                         {
-                            schedule.HoursSRS = schedule.StudentsNumber * schedule.WeeksNumber;
+                            schedule.HoursSum = (schedule.StudentsNumber * schedule.WeeksNumber);
                         }
-                        schedule.ExamenHours = (float)0.35 * schedule.WeeksNumber;
+                      
+
                     }
                     else
-                    {
-                        schedule.HoursSRS = 2 * schedule.WeeksNumber;
-                        schedule.ExamenHours = (float) 0.35 * schedule.WeeksNumber;
-                        schedule.HoursClass = schedule.HoursSRS - 4;
+                    {            
+                        schedule.HoursSum = (2 * schedule.WeeksNumber) + schedule.ExamenHours;
+                                           
                     }
-                  
+                    schedule.HoursSRS = schedule.HoursSum - schedule.HoursClass - schedule.ExamenHours;
+
                     #endregion
                     practiceRepository.SavePractice(practice);
                     practiceRepository.Save();

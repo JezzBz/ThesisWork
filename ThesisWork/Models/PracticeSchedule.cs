@@ -64,6 +64,11 @@ namespace ThesisWork.Models
         [Required]
         public int WeeksNumber { get; set; }
 
+        [Column("Часы на практику")]
+        [DisplayName("Часы на практику")]
+        [Required]
+        public float HoursSum { get; set; }
+
         [Column("Часы СРС")]
         [DisplayName("Часы СРС")]
         [Required]
