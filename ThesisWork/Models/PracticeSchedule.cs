@@ -17,8 +17,12 @@ namespace ThesisWork.Models
         [DisplayName("Id Графика практики")]
         public int Id { get; set; }
 
+
+        [DisplayName("Компетенция")]
         
-        //[ForeignKey("Id")]
+        public List<Competence> Competences { get; set; }
+
+        public int CompetenceKey { get; set; }
         [DisplayName("Id Практики")]
         [Required]
         public int PracticeId { get; set; }

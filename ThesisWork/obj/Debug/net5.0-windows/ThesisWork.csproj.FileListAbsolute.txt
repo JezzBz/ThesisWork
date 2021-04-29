@@ -67,3 +67,5 @@ C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Debug\net5.0-windows\Excel
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Debug\net5.0-windows\ExcelDataReader.DataSet.dll
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactStudentsTableForm.resources
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.UnchangedDialogForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.HeadOfDeparrtamentForms.PracticeReportsForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.HeadOfDeparrtamentForms.TeachersReportForm.resources

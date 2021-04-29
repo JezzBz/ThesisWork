@@ -10,8 +10,8 @@ using ThesisWork.Repository;
 namespace ThesisWork.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210420081036_first")]
-    partial class first
+    [Migration("20210429024031_firs")]
+    partial class firs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,15 +21,27 @@ namespace ThesisWork.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CompetencePracticeSchedule", b =>
+                {
+                    b.Property<int>("CompetencesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PracticesScheduleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CompetencesId", "PracticesScheduleId");
+
+                    b.HasIndex("PracticesScheduleId");
+
+                    b.ToTable("CompetencePracticeSchedule");
+                });
+
             modelBuilder.Entity("ThesisWork.Models.Competence", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PracticeScheduleId")
-                        .HasColumnType("int");
 
                     b.Property<string>("ThisCompetence")
                         .IsRequired()
@@ -197,6 +209,9 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id Графика практики")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompetenceKey")
+                        .HasColumnType("int");
 
                     b.Property<string>("EducationYear")
                         .IsRequired()
@@ -479,6 +494,21 @@ namespace ThesisWork.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("CompetencePracticeSchedule", b =>
+                {
+                    b.HasOne("ThesisWork.Models.Competence", null)
+                        .WithMany()
+                        .HasForeignKey("CompetencesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ThesisWork.Models.PracticeSchedule", null)
+                        .WithMany()
+                        .HasForeignKey("PracticesScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ThesisWork.Models.PracticeBase", b =>

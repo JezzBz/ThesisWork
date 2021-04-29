@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThesisWork.Models;
 using ThesisWork.Parsers;
+using ThesisWork.Repository;
 using ThesisWork.ViewModels;
 
 namespace ThesisWork.Forms.ResponsibleForms
@@ -21,15 +23,20 @@ namespace ThesisWork.Forms.ResponsibleForms
         StudentsParser parser = new StudentsParser();
         StudentsViewModel viewModel = new StudentsViewModel();
         Label label1 = new Label();
-       
+        StudentRepository repos = new StudentRepository();
+
         bool WasChanged = false;
         #endregion
         public RedactStudentsTableForm()
         {
-
+            
+           
             FormClosing += Form_Closing;
             InitializeComponent();
-            
+            foreach (var item in repos.SelectYears())
+            {
+                comboBox1.Items.Add(item);
+            }
         }
 
         private void Form_Closing(object sender, FormClosingEventArgs e)
@@ -57,7 +64,11 @@ namespace ThesisWork.Forms.ResponsibleForms
         {
             button1.Enabled = false;
             label1.AutoSize = true;
-            dataGridView1.DataSource = viewModel.SelectAll().ToList();
+            
+         
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            dataGridView1.DataSource = viewModel.SortByYear(viewModel.SelectAll().ToList());
+           
             dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
         }
 
@@ -132,7 +143,7 @@ namespace ThesisWork.Forms.ResponsibleForms
                     dataGridView1.DataSource = viewModel.SelectAll().ToList();
                     WasChanged = false;
                 }
-                
+
             }
             else
             {
@@ -161,6 +172,19 @@ namespace ThesisWork.Forms.ResponsibleForms
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = null;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Visible = dataGridView1[4, i].Value.ToString() == comboBox1.Text;
+            }
+            
+            
+            
+            
         }
     }
 }

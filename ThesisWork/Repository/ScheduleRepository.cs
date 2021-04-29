@@ -31,10 +31,18 @@ namespace ThesisWork.Repository
         }
         public bool Save()
         {
-          
+           
             int count = DataBase.SaveChanges();
           
             return count > 0;
+        }
+        public void SaveCompetence(Competence competence)
+        {
+            if (!DataBase.Competences.Any(x => x.ThisCompetence == competence.ThisCompetence))
+            {
+                DataBase.Competences.Add(competence);
+            }
+
         }
     }
 }

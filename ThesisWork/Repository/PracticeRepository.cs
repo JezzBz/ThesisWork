@@ -22,6 +22,20 @@ namespace ThesisWork.Repository
         {
             return DataBase.Practices.FirstOrDefault(x => x.Name == practice.Name && x.Semestr == practice.Semestr && x.PracticeType == practice.PracticeType && x.PracticeView == practice.PracticeView);
         }
+        public IEnumerable<PracticeBase> GetAll() => DataBase.PracticeBases.Select(x => x);
+        public bool UpdatePracticeBaseTable(IEnumerable<PracticeBase>practiceBases)
+        {
+            try
+            {
+                DataBase.PracticeBases.UpdateRange(practiceBases);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
         public bool Save()
         {
             int count = DataBase.SaveChanges();

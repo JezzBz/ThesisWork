@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ThesisWork.Migrations
 {
-    public partial class first : Migration
+    public partial class firs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,6 +13,7 @@ namespace ThesisWork.Migrations
                 {
                     IdГрафикапрактики = table.Column<int>(name: "Id Графика практики", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompetenceKey = table.Column<int>(type: "int", nullable: false),
                     PracticeId = table.Column<int>(type: "int", nullable: false),
                     Учгод = table.Column<string>(name: "Уч. год", type: "nvarchar(max)", nullable: false),
                     Группы = table.Column<string>(name: "№ Группы", type: "nvarchar(max)", nullable: false),
@@ -39,7 +40,6 @@ namespace ThesisWork.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PracticeScheduleId = table.Column<int>(type: "int", nullable: false),
                     Компетенция = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -170,6 +170,30 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CompetencePracticeSchedule",
+                columns: table => new
+                {
+                    CompetencesId = table.Column<int>(type: "int", nullable: false),
+                    PracticesScheduleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompetencePracticeSchedule", x => new { x.CompetencesId, x.PracticesScheduleId });
+                    table.ForeignKey(
+                        name: "FK_CompetencePracticeSchedule_График практик_PracticesScheduleId",
+                        column: x => x.PracticesScheduleId,
+                        principalTable: "График практик",
+                        principalColumn: "Id Графика практики",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompetencePracticeSchedule_Компетенции_CompetencesId",
+                        column: x => x.CompetencesId,
+                        principalTable: "Компетенции",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PracticeBases",
                 columns: table => new
                 {
@@ -210,6 +234,11 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CompetencePracticeSchedule_PracticesScheduleId",
+                table: "CompetencePracticeSchedule",
+                column: "PracticesScheduleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PracticeBases_PracticeScheduleId",
                 table: "PracticeBases",
                 column: "PracticeScheduleId");
@@ -222,9 +251,6 @@ namespace ThesisWork.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Компетенции");
-
             migrationBuilder.DropTable(
                 name: "Оценочная ведомость");
 
@@ -241,10 +267,16 @@ namespace ThesisWork.Migrations
                 name: "Специальности");
 
             migrationBuilder.DropTable(
+                name: "CompetencePracticeSchedule");
+
+            migrationBuilder.DropTable(
                 name: "PracticeBases");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Компетенции");
 
             migrationBuilder.DropTable(
                 name: "График практик");

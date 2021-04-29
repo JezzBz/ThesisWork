@@ -54,6 +54,7 @@ namespace ThesisWork.Forms
             this.DeleteData.TabIndex = 9;
             this.DeleteData.Text = "Отчеты по практикам";
             this.DeleteData.UseVisualStyleBackColor = true;
+            this.DeleteData.Click += new System.EventHandler(this.DeleteData_Click);
             // 
             // button5
             // 
@@ -81,6 +82,7 @@ namespace ThesisWork.Forms
             this.button2.TabIndex = 12;
             this.button2.Text = "Отчет по преподавателям";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // HeadDepartamentForm
             // 

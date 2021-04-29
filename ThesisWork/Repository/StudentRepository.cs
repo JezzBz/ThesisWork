@@ -14,6 +14,7 @@ namespace ThesisWork.Repository
         public int GetStudentsNumberByGroup(string group) => DataBase.Students.Count(x => x.GroupNumber == group);
         public  IEnumerable<Student> GetAll() => DataBase.Students.Select(x=>x);
         
+        
         public void UpdateTable(IEnumerable<Student> students)
         {
             DataBase.Students.UpdateRange(students);
@@ -25,7 +26,20 @@ namespace ThesisWork.Repository
 
             return count>0; 
         }
-           
-       
+
+        public List<string> SelectYears()
+        {
+            List<string> Years = new List<string>();
+            IEnumerable<Student> students = GetAll();
+            foreach ( var item in students)
+            {
+                if (!Years.Contains(item.SudtingYear))
+                {
+                    Years.Add(item.SudtingYear);
+                }
+                
+            }
+            return Years;
+        }
     }
 }

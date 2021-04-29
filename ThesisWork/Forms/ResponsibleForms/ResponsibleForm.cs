@@ -63,7 +63,8 @@ namespace ThesisWork.Forms
 
         private void RedactTeachers_Click(object sender, EventArgs e)
         {
-
+            RedactTeachersTableForm form = new RedactTeachersTableForm();
+            form.ShowDialog();
         }
 
         private void RedactStudents_Click(object sender, EventArgs e)

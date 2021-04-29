@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThesisWork.Forms.HeadOfDeparrtamentForms;
 using ThesisWork.Models;
 
 namespace ThesisWork.Forms
@@ -46,6 +47,18 @@ namespace ThesisWork.Forms
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DeleteData_Click(object sender, EventArgs e)
+        {
+            PracticeReportsForm form = new PracticeReportsForm();
+            form.ShowDialog();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            TeachersReportForm form = new TeachersReportForm();
+            form.ShowDialog();
         }
     }
 }

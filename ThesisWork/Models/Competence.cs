@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,15 +16,15 @@ namespace ThesisWork.Models
         public int Id { get; set; }
 
         
-        [Required]
-        //[ForeignKey("Граффик Id")]
-        public int PracticeScheduleId {get;set;}
-
+       
         [Column("Компетенция")]
+        [DisplayName("Компетенция")]
         [Required]
         public string ThisCompetence { get; set; }
+        
 
-        
-        
+        public List<PracticeSchedule> PracticesSchedule { get; set; }
+
+
     }
 }

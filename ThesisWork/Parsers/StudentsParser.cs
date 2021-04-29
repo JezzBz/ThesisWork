@@ -21,11 +21,8 @@ namespace ThesisWork.Parsers
 
                 foreach (DataRow row in rows)
                 {
-                    if (row.IsNull(0))
-                    {
-                        break;
-                    }
-                    if (row[0].ToString().Contains("Фамилия")||!row[8].ToString().ToLower().Contains("пми"))
+                   
+                    if (row[0].ToString().Contains("Фамилия"))
                     {
                         continue;
                     }
@@ -41,7 +38,10 @@ namespace ThesisWork.Parsers
                     student.Mentor =row[7].ToString().ToLower()=="да"?true:false;
                     student.Departament = row[6].ToString();
                     student.SudtingYear = filename.Split("/")[filename.Split("/").Length-1].Split(".")[0].ToLower().Split("студенты")[1].Replace(" ","");
-                    
+                    if (! student.Vector.ToLower().Contains("пми"))
+                    {
+                        continue;
+                    }
                     repos.AddStudent(student);
                     Debug.WriteLine(student.Name);
                 }

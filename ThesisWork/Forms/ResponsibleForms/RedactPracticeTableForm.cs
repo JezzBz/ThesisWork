@@ -7,14 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThesisWork.Models;
+using ThesisWork.Repository;
 
 namespace ThesisWork.Forms.ResponsibleForms
 {
     public partial class RedactPracticeTableForm : Form
     {
+        PracticeRepository repository = new PracticeRepository();
         public RedactPracticeTableForm()
         {
             InitializeComponent();
+            List<PracticeBase> practiceBases= repository.GetAll().ToList();
+            if (practiceBases.Count()==0)
+            {
+                practiceBases.Add(null);
+            }
+            dataGridView1.DataSource = practiceBases;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (repository.UpdatePracticeBaseTable((IEnumerable<PracticeBase>)dataGridView1.DataSource))
+            {
+
+                label1.ForeColor = Color.Green;
+                label1.Text = "Успешно!";
+            }
+            else
+            {
+                label1.ForeColor = Color.Red;
+                label1.Text = "Ну удалось обновить данные";
+            }
+        }
+
+
+        
     }
 }

@@ -18,11 +18,28 @@ namespace ThesisWork.Repository
             }
             
         }
+        public IEnumerable<Competence> GetCompetences() => DataBase.Competences.Select(x => x);
+        public bool Contains(string name) => DataBase.Competences.Any(x=>x.ThisCompetence==name);
+        public Competence SelectCompetence(Competence name) => DataBase.Competences.FirstOrDefault(x => x == name);
         public bool Save()
         {
             int count = DataBase.SaveChanges();
 
             return count > 0;
+        }
+        public bool UpdateTable(IEnumerable<Competence> competence)
+        {
+            try
+            {
+                DataBase.Competences.UpdateRange(competence);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+           
         }
     }
 }

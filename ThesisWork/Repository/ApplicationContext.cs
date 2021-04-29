@@ -14,14 +14,15 @@ namespace ThesisWork.Repository
         public DbSet<MarksReport> MarksReports { get; set; }
         public DbSet<PracticeBase> PracticeBases { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<Competence> Competences { get; set; }
+        public virtual DbSet<PracticeSchedule> PracticeSchedule { get; set; }
+        public virtual DbSet<Competence> Competences { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Practice> Practices { get; set; }
         public DbSet<Student> Students{ get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         
-        public DbSet<PracticeSchedule> PracticeSchedule {get;set;}
+        
         public ApplicationContext()
         {
             Database.EnsureCreated();
@@ -30,6 +31,7 @@ namespace ThesisWork.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Student>().HasKey(u => new { u.GradeBookNumber, u.SudtingYear });
+            modelBuilder.Entity<PracticeSchedule>().HasMany(p => p.Competences).WithMany(p => p.PracticesSchedule);
             
         }
 

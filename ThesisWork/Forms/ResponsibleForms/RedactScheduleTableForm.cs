@@ -25,12 +25,12 @@ namespace ThesisWork.Forms.ResponsibleForms
         CompetenceRepository competenceRepository = new CompetenceRepository();
         string fileName;
         bool changeMarker;
-        
+        int auditorehours = 4;
         public RedactScheduleTableForm()
         {
             
             InitializeComponent();
-            
+            textBox1.Text = "4";
 
 
         }
@@ -52,16 +52,15 @@ namespace ThesisWork.Forms.ResponsibleForms
                         DataSet result = reader.AsDataSet();
                         data = result.Tables;
                         
-                        ScheduleParser.ParseScheduleFromExcel(data, practiceRepository, scheduleRepository, competenceRepository);
+                        ScheduleParser.ParseScheduleFromExcel(data, practiceRepository, scheduleRepository, competenceRepository,auditorehours);
                     }
 
 
                 }
             }
          
-            practiceRepository.Save();
-            scheduleRepository.Save();
-            competenceRepository.Save();
+           
+            
          
             
 
@@ -89,6 +88,21 @@ namespace ThesisWork.Forms.ResponsibleForms
         {
             PracticeSchedule.ReadOnly = false;
             PracticeSchedule.DataSource = scheduleRepository.SelectAll().ToList();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            auditorehours = int.Parse(textBox1.Text);
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number)&&number!=8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -47,6 +47,14 @@ namespace ThesisWork.ViewModels
             }
            
         }
+        public List<Student> SortByYear(List<Student>students)
+        {
+            Comparer comparer = new Comparer();
+
+
+            students.Sort(comparer);
+            return students;
+        }
     }
     
 }
