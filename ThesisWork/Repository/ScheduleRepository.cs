@@ -20,6 +20,10 @@ namespace ThesisWork.Repository
             {
                 DataBase.PracticeSchedule.Add(schedule);
             }
+            else
+            {
+                DataBase.PracticeSchedule.Update(schedule);
+            }
             
             
         }
