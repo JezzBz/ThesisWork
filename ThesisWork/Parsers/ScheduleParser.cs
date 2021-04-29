@@ -28,19 +28,33 @@ namespace ThesisWork.Parsers
                 string practiceName = "";
                 string practiceSemestr = "";
                 string educationYear = "";
-
+                int NullCount = 0;
+                
                 foreach (DataRow row in table.Rows)
                 {
+                    Debug.WriteLine(NullCount);
                     PracticeSchedule schedule = new PracticeSchedule();
                     Practice practice = new Practice();
-
-                    if (row.IsNull(0) || row.IsNull(1))
+                    if (row[5].ToString().ToLower().Contains("год"))
                     {
+                        educationYear = row[5].ToString().ToLower().Split("уч")[0].Replace(" ", "").Replace("/", "-");
+                    }
+                    if (NullCount > 10)
+                    {
+                        break;
+                    }
+                    if (row[0].ToString().Replace(" ","")=="")
+                    {
+                        NullCount++;
                         continue;
                     }
-
-
-                    if (row[0].ToString().ToLower().Contains("практика"))
+                    else
+                    {
+                        NullCount = 0;
+                    }
+                   
+                    
+                    if (row[0].ToString().ToLower().Contains("практика") || row[0].ToString().ToLower().Contains("семестр"))
                     {
 
                         practiceName = row[0].ToString().Split(".")[0];
@@ -60,11 +74,11 @@ namespace ThesisWork.Parsers
                     {
 
 
-
+                       
                         practice.PracticeView = row[6].ToString();
                         practice.PracticeType = row[7].ToString();
 
-
+                        
                         schedule.EducationYear = educationYear;
                         practice.Semestr = practiceSemestr;
                         practice.Name = practiceName;
@@ -83,15 +97,11 @@ namespace ThesisWork.Parsers
                         schedule.SchedulePage = table.TableName;
                         string year = row[4].ToString().ToLower().Split("по")[1].Replace(" ", "").Split(".")[2].Split("г")[0];
 
-                        Debug.WriteLine(schedule.GroupNumber);
-                        Debug.WriteLine(row[4]);
-                        Debug.WriteLine(row[4].ToString().Split("с")[1]);
-                        Debug.WriteLine(row[4].ToString().Split("с")[1].Replace(" ", ""));
-                        Debug.WriteLine(row[4].ToString().Split("с")[1].Replace(" ", "").Split("по")[0]);
+                        
                         schedule.StartDate = DateTime.ParseExact(row[4].ToString().ToLower().Split("с")[1].Replace(" ", "").Split("по")[0] + "." + year, "d.M.yyyy", null);
-                        Debug.WriteLine(schedule.StartDate);
+                       
                         schedule.EndDate = DateTime.ParseExact(row[4].ToString().ToLower().Split("по")[1].Replace(" ", "").Split("г")[0], "d.M.yyyy", null);
-                        Debug.WriteLine("3");
+                        
 
                         #region Hours
                         schedule.StudentsNumber = studentsViewModel.GetStudentsCountByGroup(schedule.GroupNumber);
