@@ -19,7 +19,18 @@ namespace ThesisWork.Repository
         {
             DataBase.Students.UpdateRange(students);
         }
-        public void AddStudent(Student student)=> DataBase.Students.Add(student);
+        public void AddStudent(Student student)
+        {
+            if (!DataBase.Students.Any(x=>x==student))
+            {
+                DataBase.Students.Add(student);
+            }
+            else
+            {
+                DataBase.Students.Update(student);
+            }
+          
+        }
         public  bool Save() 
         {
             int count =  DataBase.SaveChanges();

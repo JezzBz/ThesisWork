@@ -102,13 +102,13 @@ namespace ThesisWork.Forms.ResponsibleForms
                         }
                         else
                         {
-                            textBox1.BackColor = Color.Red;
+                            textBox1.BackColor = Color.Yellow;
                             label1.Location = new Point(570, 55);
-                            label1.Text = "Невалидный файл";
-                            label1.ForeColor = Color.Red;
+                           // label1.Text = "Невалидный файл";
+                          //  label1.ForeColor = Color.Red;
                             label1.AutoSize = true;
                             Controls.Add(label1);
-                            button1.Enabled = false;
+                            button1.Enabled = true;
                         }
 
                     }
