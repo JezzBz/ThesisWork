@@ -79,7 +79,7 @@ namespace ThesisWork.Parsers
                         practice.PracticeType = row[7].ToString();
 
                         
-                        schedule.EducationYear = educationYear;
+                        schedule.EducationYear = educationYear.Replace("/","-");
                         practice.Semestr = practiceSemestr;
                         practice.Name = practiceName;
 
@@ -104,7 +104,7 @@ namespace ThesisWork.Parsers
                         
 
                         #region Hours
-                        schedule.StudentsNumber = studentsViewModel.GetStudentsCountByGroup(schedule.GroupNumber);
+                        schedule.StudentsNumber = studentsViewModel.GetStudentsCount(schedule);
 
                         schedule.ExamenHours = (float)Math.Round(0.35 * schedule.StudentsNumber, 2);
                         schedule.HoursClass = auditorehours;

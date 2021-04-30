@@ -12,13 +12,13 @@ namespace ThesisWork.Parsers
 {
     class StudentsParser
     {
-        public bool ParseStudentsfromExcel(DataRowCollection rows,string filename)
+        public string ParseStudentsfromExcel(DataRowCollection rows,string filename)
         {
-
+            string year=null;
             StudentRepository repos = new StudentRepository();
             try
             {
-
+                
                 foreach (DataRow row in rows)
                 {
                    
@@ -38,6 +38,7 @@ namespace ThesisWork.Parsers
                     student.Mentor =row[7].ToString().ToLower()=="да"?true:false;
                     student.Departament = row[6].ToString();
                     student.SudtingYear = filename.Split("/")[filename.Split("/").Length-1].Split(".")[0].ToLower().Split("студенты")[1].Replace(" ","");
+                    year = student.SudtingYear;
                     if (! student.Vector.ToLower().Contains("пми"))
                     {
                         continue;
@@ -49,9 +50,9 @@ namespace ThesisWork.Parsers
             catch (Exception)
             {
 
-                return false;
+                return null;
             }
-            return true;
+            return year;
         }
     }
 }

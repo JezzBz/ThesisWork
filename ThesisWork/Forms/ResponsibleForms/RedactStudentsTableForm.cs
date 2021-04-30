@@ -93,19 +93,19 @@ namespace ThesisWork.Forms.ResponsibleForms
                         data = result.Tables;
                         DataTable Table = data[0];
                         
-                        bool request=parser.ParseStudentsfromExcel(Table.Rows,FileDialog.FileName);
-                        if (request)
+                        string request=parser.ParseStudentsfromExcel(Table.Rows,FileDialog.FileName);
+                        if (request!=null)
                         {
                             label1.Text = "";
                             textBox1.BackColor = Color.Green;
-                            button1.Enabled = true;    
+                            button1.Enabled = true;
+                                comboBox1.Items.Add(request);
                         }
                         else
                         {
                             textBox1.BackColor = Color.Yellow;
                             label1.Location = new Point(570, 55);
-                           // label1.Text = "Невалидный файл";
-                          //  label1.ForeColor = Color.Red;
+                          
                             label1.AutoSize = true;
                             Controls.Add(label1);
                             button1.Enabled = true;
@@ -142,6 +142,7 @@ namespace ThesisWork.Forms.ResponsibleForms
                     Controls.Add(label1);
                     dataGridView1.DataSource = viewModel.SelectAll().ToList();
                     WasChanged = false;
+                    
                 }
 
             }

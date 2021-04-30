@@ -57,7 +57,7 @@ namespace ThesisWork.Forms.ResponsibleForms
             // 
             // ChangeTable
             // 
-            this.ChangeTable.Location = new System.Drawing.Point(545, 12);
+            this.ChangeTable.Location = new System.Drawing.Point(535, 12);
             this.ChangeTable.Name = "ChangeTable";
             this.ChangeTable.Size = new System.Drawing.Size(225, 29);
             this.ChangeTable.TabIndex = 2;

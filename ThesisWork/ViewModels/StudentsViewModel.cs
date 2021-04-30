@@ -11,10 +11,10 @@ namespace ThesisWork.ViewModels
     class StudentsViewModel
     {
         StudentRepository repos = new StudentRepository();
-        public int GetStudentsCountByGroup(string group) 
+        public int GetStudentsCount(PracticeSchedule practiceSchedule) 
         {
             
-            return repos.GetStudentsNumberByGroup(group);
+            return repos.GetStudentsNumberByGroup(practiceSchedule);
         }
         public  bool Apply()
         {

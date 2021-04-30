@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ThesisWork.Migrations
 {
-    public partial class firs : Migration
+    public partial class _2121 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,6 @@ namespace ThesisWork.Migrations
                 {
                     IdГрафикапрактики = table.Column<int>(name: "Id Графика практики", type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CompetenceKey = table.Column<int>(type: "int", nullable: false),
                     PracticeId = table.Column<int>(type: "int", nullable: false),
                     Учгод = table.Column<string>(name: "Уч. год", type: "nvarchar(max)", nullable: false),
                     Группы = table.Column<string>(name: "№ Группы", type: "nvarchar(max)", nullable: false),

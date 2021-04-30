@@ -20,14 +20,18 @@ namespace ThesisWork.Repository
             {
                 DataBase.PracticeSchedule.Add(schedule);
             }
-            else
+            else 
             {
                 DataBase.PracticeSchedule.Update(schedule);
             }
             
             
         }
-
+        public void UpdateRange(IEnumerable<PracticeSchedule> practiceSchedules)
+        {
+            DataBase.PracticeSchedule.UpdateRange(practiceSchedules);
+            Save();
+        }
         public PracticeSchedule Select(PracticeSchedule schedule)
         {
 

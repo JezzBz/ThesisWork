@@ -37,13 +37,14 @@ namespace ThesisWork.Forms.ResponsibleForms
 
         private void ChangeTable_Click(object sender, EventArgs e)
         {
-            
 
-            
-            ScheduleRepository scheduleRepository = new ScheduleRepository();
+
+
+            scheduleRepository.UpdateRange((IEnumerable<PracticeSchedule>)PracticeSchedule.DataSource);
             if (changeMarker)
             {
                 DataTableCollection data;
+                ScheduleRepository repository = new ScheduleRepository();
                 using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
                 {
                     using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -53,16 +54,14 @@ namespace ThesisWork.Forms.ResponsibleForms
                         data = result.Tables;
                         
                         ScheduleParser.ParseScheduleFromExcel(data, practiceRepository, scheduleRepository, competenceRepository,auditorehours);
+                        scheduleRepository.Save();
                     }
 
 
                 }
+                PracticeSchedule.DataSource = scheduleRepository.SelectAll().ToList();
             }
          
-           
-            
-         
-            
 
         }
 

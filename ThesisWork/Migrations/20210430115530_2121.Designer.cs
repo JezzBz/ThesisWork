@@ -10,8 +10,8 @@ using ThesisWork.Repository;
 namespace ThesisWork.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210429125354_212")]
-    partial class _212
+    [Migration("20210430115530_2121")]
+    partial class _2121
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

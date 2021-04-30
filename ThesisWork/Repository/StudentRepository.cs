@@ -11,7 +11,7 @@ namespace ThesisWork.Repository
     class StudentRepository
     {
         private static readonly ApplicationContext DataBase = new ApplicationContext();
-        public int GetStudentsNumberByGroup(string group) => DataBase.Students.Count(x => x.GroupNumber == group);
+        public int GetStudentsNumberByGroup(PracticeSchedule practiceSchedule) => DataBase.Students.Count(x => x.GroupNumber == practiceSchedule.GroupNumber&&x.SudtingYear==practiceSchedule.EducationYear);
         public  IEnumerable<Student> GetAll() => DataBase.Students.Select(x=>x);
         
         
@@ -25,10 +25,11 @@ namespace ThesisWork.Repository
             {
                 DataBase.Students.Add(student);
             }
-            else
+            else 
             {
                 DataBase.Students.Update(student);
             }
+           
           
         }
         public  bool Save() 
