@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ThesisWork.Models
 {
+    [Table("База практики")]
     class PracticeBase
     {
 
@@ -18,7 +19,7 @@ namespace ThesisWork.Models
         [Column("Уч. год")]
         [DisplayName("Уч. год")]
         [Required]
-        public DateTime EducationYear { get; set; }
+        public string EducationYear { get; set; }
 
         [Column("Группа")]
         [DisplayName("Группа")]

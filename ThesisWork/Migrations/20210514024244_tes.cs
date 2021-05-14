@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ThesisWork.Migrations
 {
-    public partial class _2121 : Migration
+    public partial class tes : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,21 +47,6 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Оценочная ведомость",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExamenBookNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Оценка = table.Column<int>(type: "int", nullable: false),
-                    Учебныйгод = table.Column<int>(name: "Учебный год", type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Оценочная ведомость", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Практики",
                 columns: table => new
                 {
@@ -79,29 +64,6 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Преподаватели",
-                columns: table => new
-                {
-                    TabNumber = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Имя = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Фамилия = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Отчество = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ФИО = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Должность = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Учстепень = table.Column<string>(name: "Уч. степень", type: "nvarchar(max)", nullable: false),
-                    Пароль = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Ставка = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Штатность = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Контактныйтелефон = table.Column<string>(name: "Контактный телефон", type: "nvarchar(max)", nullable: false),
-                    Звание = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Преподаватели", x => x.TabNumber);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Профиль",
                 columns: table => new
                 {
@@ -113,6 +75,29 @@ namespace ThesisWork.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Профиль", x => x.Group);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Руководители практик",
+                columns: table => new
+                {
+                    TabNumber = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Имя = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Фамилия = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Отчество = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ФИО = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Должность = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Учстепень = table.Column<string>(name: "Уч. степень", type: "nvarchar(max)", nullable: true),
+                    Логин = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ставка = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Штатность = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Контактныйтелефон = table.Column<string>(name: "Контактный телефон", type: "nvarchar(max)", nullable: true),
+                    Звание = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Руководители практик", x => x.TabNumber);
                 });
 
             migrationBuilder.CreateTable(
@@ -193,12 +178,12 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PracticeBases",
+                name: "База практики",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Учгод = table.Column<DateTime>(name: "Уч. год", type: "datetime2", nullable: false),
+                    Учгод = table.Column<string>(name: "Уч. год", type: "nvarchar(max)", nullable: false),
                     Группа = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StudentGradeBookNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     StudentSudtingYear = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -217,15 +202,37 @@ namespace ThesisWork.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PracticeBases", x => x.Id);
+                    table.PrimaryKey("PK_База практики", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PracticeBases_График практик_PracticeScheduleId",
+                        name: "FK_База практики_График практик_PracticeScheduleId",
                         column: x => x.PracticeScheduleId,
                         principalTable: "График практик",
                         principalColumn: "Id Графика практики",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PracticeBases_Студенты_StudentGradeBookNumber_StudentSudtingYear",
+                        name: "FK_База практики_Студенты_StudentGradeBookNumber_StudentSudtingYear",
+                        columns: x => new { x.StudentGradeBookNumber, x.StudentSudtingYear },
+                        principalTable: "Студенты",
+                        principalColumns: new[] { "Номер зачётной книжки", "Уч. год" },
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Оценочная ведомость",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentGradeBookNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    StudentSudtingYear = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Оценка = table.Column<int>(type: "int", nullable: false),
+                    Учебныйгод = table.Column<int>(name: "Учебный год", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Оценочная ведомость", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Оценочная ведомость_Студенты_StudentGradeBookNumber_StudentSudtingYear",
                         columns: x => new { x.StudentGradeBookNumber, x.StudentSudtingYear },
                         principalTable: "Студенты",
                         principalColumns: new[] { "Номер зачётной книжки", "Уч. год" },
@@ -233,23 +240,31 @@ namespace ThesisWork.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompetencePracticeSchedule_PracticesScheduleId",
-                table: "CompetencePracticeSchedule",
-                column: "PracticesScheduleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PracticeBases_PracticeScheduleId",
-                table: "PracticeBases",
+                name: "IX_База практики_PracticeScheduleId",
+                table: "База практики",
                 column: "PracticeScheduleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PracticeBases_StudentGradeBookNumber_StudentSudtingYear",
-                table: "PracticeBases",
+                name: "IX_База практики_StudentGradeBookNumber_StudentSudtingYear",
+                table: "База практики",
                 columns: new[] { "StudentGradeBookNumber", "StudentSudtingYear" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Оценочная ведомость_StudentGradeBookNumber_StudentSudtingYear",
+                table: "Оценочная ведомость",
+                columns: new[] { "StudentGradeBookNumber", "StudentSudtingYear" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompetencePracticeSchedule_PracticesScheduleId",
+                table: "CompetencePracticeSchedule",
+                column: "PracticesScheduleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "База практики");
+
             migrationBuilder.DropTable(
                 name: "Оценочная ведомость");
 
@@ -257,10 +272,10 @@ namespace ThesisWork.Migrations
                 name: "Практики");
 
             migrationBuilder.DropTable(
-                name: "Преподаватели");
+                name: "Профиль");
 
             migrationBuilder.DropTable(
-                name: "Профиль");
+                name: "Руководители практик");
 
             migrationBuilder.DropTable(
                 name: "Специальности");
@@ -269,19 +284,16 @@ namespace ThesisWork.Migrations
                 name: "CompetencePracticeSchedule");
 
             migrationBuilder.DropTable(
-                name: "PracticeBases");
-
-            migrationBuilder.DropTable(
                 name: "User");
 
             migrationBuilder.DropTable(
-                name: "Компетенции");
+                name: "Студенты");
 
             migrationBuilder.DropTable(
                 name: "График практик");
 
             migrationBuilder.DropTable(
-                name: "Студенты");
+                name: "Компетенции");
         }
     }
 }

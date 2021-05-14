@@ -29,8 +29,8 @@ namespace ThesisWork.Forms.ResponsibleForms
         #endregion
         public RedactStudentsTableForm()
         {
-            
-           
+
+
             FormClosing += Form_Closing;
             InitializeComponent();
             foreach (var item in repos.SelectYears())
@@ -41,7 +41,7 @@ namespace ThesisWork.Forms.ResponsibleForms
 
         private void Form_Closing(object sender, FormClosingEventArgs e)
         {
-            
+
             if (WasChanged)
             {
 
@@ -54,21 +54,21 @@ namespace ThesisWork.Forms.ResponsibleForms
                 else
                 {
                     WasChanged = false;
-                    unchanged.Dispose(); 
+                    unchanged.Dispose();
                     Close();
                 }
-                
+
             }
         }
         private void RedactSudentsTableForm_Load(object sender, EventArgs e)
         {
             button1.Enabled = false;
             label1.AutoSize = true;
-            
-         
+
+
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             dataGridView1.DataSource = viewModel.SortByYear(viewModel.SelectAll().ToList());
-           
+
             dataGridView1.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
         }
 
@@ -83,36 +83,36 @@ namespace ThesisWork.Forms.ResponsibleForms
                 try
                 {
 
-               
-                using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
-                {
-                    using (var reader = ExcelReaderFactory.CreateReader(stream))
-                    {
-                        textBox1.Text = FileDialog.FileName;
-                        DataSet result = reader.AsDataSet();
-                        data = result.Tables;
-                        DataTable Table = data[0];
-                        
-                        string request=parser.ParseStudentsfromExcel(Table.Rows,FileDialog.FileName);
-                        if (request!=null)
-                        {
-                            label1.Text = "";
-                            textBox1.BackColor = Color.Green;
-                            button1.Enabled = true;
-                                comboBox1.Items.Add(request);
-                        }
-                        else
-                        {
-                            textBox1.BackColor = Color.Yellow;
-                            label1.Location = new Point(570, 55);
-                          
-                            label1.AutoSize = true;
-                            Controls.Add(label1);
-                            button1.Enabled = true;
-                        }
 
+                    using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var reader = ExcelReaderFactory.CreateReader(stream))
+                        {
+                            textBox1.Text = FileDialog.FileName;
+                            DataSet result = reader.AsDataSet();
+                            data = result.Tables;
+                            DataTable Table = data[0];
+                            
+                            string request = parser.ParseStudentsfromExcel(Table.Rows, FileDialog.FileName);
+                            if (request != null)
+                            {
+                                label1.Text = "";
+                                textBox1.BackColor = Color.Green;
+                                button1.Enabled = true;
+                                comboBox1.Items.Add(request);
+                            }
+                            else
+                            {
+                                textBox1.BackColor = Color.Yellow;
+                                label1.Location = new Point(570, 55);
+
+                                label1.AutoSize = true;
+                                Controls.Add(label1);
+                                button1.Enabled = true;
+                            }
+
+                        }
                     }
-                }
                 }
                 catch (IOException)
                 {
@@ -129,8 +129,8 @@ namespace ThesisWork.Forms.ResponsibleForms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            if (viewModel.UpdateTable((IEnumerable<Student>)dataGridView1.DataSource) )
+
+            if (viewModel.UpdateTable((IEnumerable<Student>)dataGridView1.DataSource))
             {
                 if (viewModel.Apply())
                 {
@@ -142,13 +142,13 @@ namespace ThesisWork.Forms.ResponsibleForms
                     Controls.Add(label1);
                     dataGridView1.DataSource = viewModel.SelectAll().ToList();
                     WasChanged = false;
-                    
+
                 }
 
             }
             else
             {
-               
+
                 label1.Location = new Point(555, 55);
                 label1.Text = "Ошибка обновления базы данных";
                 label1.ForeColor = Color.Red;
@@ -156,13 +156,13 @@ namespace ThesisWork.Forms.ResponsibleForms
                 Controls.Add(label1);
                 WasChanged = true;
             }
-            
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-           
+
         }
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -182,10 +182,10 @@ namespace ThesisWork.Forms.ResponsibleForms
             {
                 dataGridView1.Rows[i].Visible = dataGridView1[4, i].Value.ToString() == comboBox1.Text;
             }
-            
-            
-            
-            
+
+
+
+
         }
     }
 }

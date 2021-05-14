@@ -15,9 +15,21 @@ namespace ThesisWork.Repository
         
         public  bool AddUser(User user) 
         {
-            DataBase.Add(user);
+            if (!DataBase.User.Any(x=>x.Login==user.Login&&x.Password==user.Password))
+            {
+                Teacher teacher = new Teacher();
+                teacher.login = user.Login;
+                teacher.FCs = user.FCs;
+                teacher.Name = user.Name;
+                teacher.Patronymic = user.Patronymic;
+                teacher.Surname = user.Surname;
+
+                DataBase.Add(user);
+                DataBase.Teachers.Add(teacher);
+               
+            }
             var count = DataBase.SaveChanges();
-            if (count == 1) return true;
+            if (count > 1) return true;
             else return false;
            
         }

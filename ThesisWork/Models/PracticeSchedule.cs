@@ -18,7 +18,7 @@ namespace ThesisWork.Models
         public int Id { get; set; }
 
 
-        [DisplayName("Компетенция")]
+        [DisplayName("Компетенции")]
         
         public List<Competence> Competences { get; set; }
 

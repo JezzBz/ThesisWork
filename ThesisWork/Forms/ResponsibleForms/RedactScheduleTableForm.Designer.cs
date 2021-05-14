@@ -54,6 +54,7 @@ namespace ThesisWork.Forms.ResponsibleForms
             this.PracticeSchedule.RowTemplate.Height = 29;
             this.PracticeSchedule.Size = new System.Drawing.Size(1312, 387);
             this.PracticeSchedule.TabIndex = 1;
+            this.PracticeSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PracticeSchedule_CellContentClick);
             // 
             // ChangeTable
             // 

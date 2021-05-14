@@ -12,19 +12,31 @@ namespace ThesisWork.Repository
         private static readonly ApplicationContext DataBase = new ApplicationContext();
 
         public IEnumerable<Teacher> GetAll() => DataBase.Teachers.Select(x => x);
-        public bool UpdateTable(IEnumerable<Teacher>teachers)
+        public bool UpdateTable(IEnumerable<Teacher> teachers)
         {
-            try
-            {
-                DataBase.Teachers.UpdateRange(teachers);
+           // try
+            //{
+                foreach (var teacher in teachers)
+                {
+                    if (DataBase.Teachers.Any(x => x == teacher))
+                    {
+                        DataBase.Teachers.Update(teacher);
+                    }
+                    else
+                    {
+                        DataBase.Teachers.Add(teacher);
+                    }
+                }
+                DataBase.SaveChanges();
                 return true;
-            }
-            catch (Exception)
-            {
+         //   }
+   //         catch (Exception)
+     //       {
 
-                return false;
-            }
-            
+         //       return false;
+           // }
+
         }
+
     }
 }

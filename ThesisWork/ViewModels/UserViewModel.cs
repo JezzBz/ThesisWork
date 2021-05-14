@@ -24,10 +24,10 @@ namespace ThesisWork.ViewModels
                 NewUser.Patronymic = patronymic;
                 NewUser.Role = role;
                 NewUser.FCs = name + " " + surname + " " + patronymic;
-
+                
                 return Repository.AddUser(NewUser);
             }
-            else return false;
+            return false;
         }
     }
 }

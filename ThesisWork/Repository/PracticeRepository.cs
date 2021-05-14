@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,5 +43,24 @@ namespace ThesisWork.Repository
 
             return count > 0;
         }
+        public void AddToPractiseBase(PracticeBase practiceBase)
+        {
+            if (!DataBase.PracticeBases.Any(x=>x.Student==practiceBase.Student))
+            {
+                DataBase.PracticeBases.Add(practiceBase);
+            }
+            else
+            {
+                PracticeBase practice=DataBase.PracticeBases.FirstOrDefault(x => x.Student == practiceBase.Student);
+                practice = practiceBase;
+            }
+           
+        }
+        public void AttachStudent(Student student)
+        {
+            DataBase.Students.Attach(student);
+        }
+        
+        
     }
 }

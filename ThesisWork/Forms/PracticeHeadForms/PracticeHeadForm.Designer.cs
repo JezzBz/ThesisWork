@@ -29,94 +29,32 @@ namespace ThesisWork.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.PracticeSchedule = new System.Windows.Forms.DataGridView();
-            this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StudentsNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vector = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PracticeHourse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExamenHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dates = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.practiceSchedule = new System.Windows.Forms.DataGridView();
             this.PracticePlan = new System.Windows.Forms.Button();
             this.StudentsPattern = new System.Windows.Forms.Button();
             this.Statement = new System.Windows.Forms.Button();
             this.Report = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.PracticeSchedule)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.practiceSchedule)).BeginInit();
             this.SuspendLayout();
             // 
-            // PracticeSchedule
+            // practiceSchedule
             // 
-            this.PracticeSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.practiceSchedule.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PracticeSchedule.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.PracticeSchedule.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.PracticeSchedule.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.PracticeSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PracticeSchedule.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Group,
-            this.StudentsNumber,
-            this.Vector,
-            this.Weeks,
-            this.PracticeHourse,
-            this.ExamenHours,
-            this.Dates});
-            this.PracticeSchedule.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.PracticeSchedule.Location = new System.Drawing.Point(-2, 233);
-            this.PracticeSchedule.Name = "PracticeSchedule";
-            this.PracticeSchedule.RowHeadersWidth = 51;
-            this.PracticeSchedule.RowTemplate.Height = 29;
-            this.PracticeSchedule.Size = new System.Drawing.Size(1265, 428);
-            this.PracticeSchedule.TabIndex = 0;
-            // 
-            // Group
-            // 
-            this.Group.HeaderText = "Группа";
-            this.Group.MinimumWidth = 6;
-            this.Group.Name = "Group";
-            this.Group.ReadOnly = true;
-            // 
-            // StudentsNumber
-            // 
-            this.StudentsNumber.HeaderText = "Количество студентов";
-            this.StudentsNumber.MinimumWidth = 6;
-            this.StudentsNumber.Name = "StudentsNumber";
-            this.StudentsNumber.ReadOnly = true;
-            // 
-            // Vector
-            // 
-            this.Vector.HeaderText = "Направление";
-            this.Vector.MinimumWidth = 6;
-            this.Vector.Name = "Vector";
-            this.Vector.ReadOnly = true;
-            // 
-            // Weeks
-            // 
-            this.Weeks.HeaderText = "Количество недель";
-            this.Weeks.MinimumWidth = 6;
-            this.Weeks.Name = "Weeks";
-            this.Weeks.ReadOnly = true;
-            // 
-            // PracticeHourse
-            // 
-            this.PracticeHourse.HeaderText = "Часы на практику";
-            this.PracticeHourse.MinimumWidth = 6;
-            this.PracticeHourse.Name = "PracticeHourse";
-            this.PracticeHourse.ReadOnly = true;
-            // 
-            // ExamenHours
-            // 
-            this.ExamenHours.HeaderText = "Часы на зачёт";
-            this.ExamenHours.MinimumWidth = 6;
-            this.ExamenHours.Name = "ExamenHours";
-            this.ExamenHours.ReadOnly = true;
-            // 
-            // Dates
-            // 
-            this.Dates.HeaderText = "Срок прохождения";
-            this.Dates.MinimumWidth = 6;
-            this.Dates.Name = "Dates";
-            this.Dates.ReadOnly = true;
+            this.practiceSchedule.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.practiceSchedule.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.practiceSchedule.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.practiceSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.practiceSchedule.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.practiceSchedule.Location = new System.Drawing.Point(-2, 233);
+            this.practiceSchedule.Name = "practiceSchedule";
+            this.practiceSchedule.RowHeadersWidth = 51;
+            this.practiceSchedule.RowTemplate.Height = 29;
+            this.practiceSchedule.Size = new System.Drawing.Size(1265, 428);
+            this.practiceSchedule.TabIndex = 0;
+            this.practiceSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PracticeSchedule_CellContentClick);
             // 
             // PracticePlan
             // 
@@ -154,37 +92,42 @@ namespace ThesisWork.Forms
             this.Report.Text = "Отчёт руководителя практики";
             this.Report.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(516, 180);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(162, 29);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Применить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PracticeHeadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Report);
             this.Controls.Add(this.Statement);
             this.Controls.Add(this.StudentsPattern);
             this.Controls.Add(this.PracticePlan);
-            this.Controls.Add(this.PracticeSchedule);
+            this.Controls.Add(this.practiceSchedule);
             this.Name = "PracticeHeadForm";
             this.Text = "д.";
             this.Load += new System.EventHandler(this.PracticeHeadForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PracticeSchedule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.practiceSchedule)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView PracticeSchedule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Group;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentsNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Vector;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weeks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PracticeHourse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExamenHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dates;
+        private System.Windows.Forms.DataGridView practiceSchedule;
         private System.Windows.Forms.Button PracticePlan;
         private System.Windows.Forms.Button StudentsPattern;
         private System.Windows.Forms.Button Statement;
         private System.Windows.Forms.Button Report;
+        private System.Windows.Forms.Button button1;
     }
 }

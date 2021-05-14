@@ -62,15 +62,19 @@ namespace ThesisWork.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Учебный год");
 
-                    b.Property<string>("ExamenBookNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("Mark")
                         .HasColumnType("int")
                         .HasColumnName("Оценка");
 
+                    b.Property<string>("StudentGradeBookNumber")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StudentSudtingYear")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("id");
+
+                    b.HasIndex("StudentGradeBookNumber", "StudentSudtingYear");
 
                     b.ToTable("Оценочная ведомость");
                 });
@@ -153,8 +157,9 @@ namespace ThesisWork.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("№ Договора ");
 
-                    b.Property<DateTime>("EducationYear")
-                        .HasColumnType("datetime2")
+                    b.Property<string>("EducationYear")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("Уч. год");
 
                     b.Property<string>("Group")
@@ -197,7 +202,7 @@ namespace ThesisWork.Migrations
 
                     b.HasIndex("StudentGradeBookNumber", "StudentSudtingYear");
 
-                    b.ToTable("PracticeBases");
+                    b.ToTable("База практики");
                 });
 
             modelBuilder.Entity("ThesisWork.Models.PracticeSchedule", b =>
@@ -385,63 +390,53 @@ namespace ThesisWork.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AcademicDegree")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Уч. степень");
 
                     b.Property<string>("FCs")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ФИО");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Имя");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Пароль");
-
                     b.Property<string>("Patronymic")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Отчество");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Контактный телефон");
 
                     b.Property<string>("Post")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Должность");
 
                     b.Property<string>("Rate")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Ставка");
 
                     b.Property<string>("StaffingLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Штатность");
 
                     b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Фамилия");
 
                     b.Property<string>("TeachersTitle")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Звание");
 
+                    b.Property<string>("login")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Логин");
+
                     b.HasKey("TabNumber");
 
-                    b.ToTable("Преподаватели");
+                    b.ToTable("Руководители практик");
                 });
 
             modelBuilder.Entity("ThesisWork.Models.User", b =>
@@ -504,6 +499,15 @@ namespace ThesisWork.Migrations
                         .HasForeignKey("PracticesScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ThesisWork.Models.MarksReport", b =>
+                {
+                    b.HasOne("ThesisWork.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentGradeBookNumber", "StudentSudtingYear");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("ThesisWork.Models.PracticeBase", b =>

@@ -14,9 +14,9 @@ namespace ThesisWork.Models
         [Key]
         public int id { get; set; }
         
-        [ForeignKey("№ Зачет. книжки")]
+        [Column("№ Зачет. книжки")]
         [Required]
-        public string ExamenBookNumber { get; set; }
+        public Student Student { get; set; }
 
         [Column("Оценка")]
         [Required]

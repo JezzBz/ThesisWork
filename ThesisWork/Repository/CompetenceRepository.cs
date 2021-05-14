@@ -19,8 +19,8 @@ namespace ThesisWork.Repository
             
         }
         public IEnumerable<Competence> GetCompetences() => DataBase.Competences.Select(x => x);
-        public bool Contains(string name) => DataBase.Competences.Any(x=>x.ThisCompetence==name);
-        public Competence SelectCompetence(Competence name) => DataBase.Competences.FirstOrDefault(x => x == name);
+        
+      
         public bool Save()
         {
             int count = DataBase.SaveChanges();
@@ -41,5 +41,6 @@ namespace ThesisWork.Repository
             }
            
         }
+        public Competence SelectCompetence(Competence competence) => DataBase.Competences.FirstOrDefault(x=>x.ThisCompetence==competence.ThisCompetence);
     }
 }

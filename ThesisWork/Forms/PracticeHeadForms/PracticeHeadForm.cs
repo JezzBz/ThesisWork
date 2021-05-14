@@ -9,12 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ThesisWork.Models;
+using ThesisWork.Repository;
 
 namespace ThesisWork.Forms
 {
     public partial class PracticeHeadForm : Form
     {
         User User = new User();
+        ScheduleRepository scheduleRepository = new ScheduleRepository();
         public PracticeHeadForm(User user)
         {
             User = user;
@@ -42,7 +44,9 @@ namespace ThesisWork.Forms
 
                 Controls.Add(ToResponsible);
             }
+            
             InitializeComponent();
+            practiceSchedule.DataSource = scheduleRepository.ScheduleInfo(user.FCs).ToList();
         }
 
         private void PracticeHeadForm_Load(object sender, EventArgs e)
@@ -66,6 +70,17 @@ namespace ThesisWork.Forms
             HeadDepartamentForm responsible = new HeadDepartamentForm(User);
             responsible.Text = User.FCs + " - Зав. кафедрой";
             responsible.Show();
+        }
+
+        private void PracticeSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            scheduleRepository.UpdateRange((IEnumerable<PracticeSchedule>)practiceSchedule.DataSource);
+            scheduleRepository.Save();
         }
     }
 }

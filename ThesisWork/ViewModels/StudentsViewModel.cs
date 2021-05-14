@@ -55,6 +55,10 @@ namespace ThesisWork.ViewModels
             students.Sort(comparer);
             return students;
         }
+        public IEnumerable<Student> GetStudentsByGroup(string group, string year)
+        {
+            return repos.GetStudentsByGroup(group,year);
+        }
     }
     
 }

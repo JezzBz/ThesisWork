@@ -18,7 +18,7 @@ namespace ThesisWork.Parsers
         {
 
         }
-        public static void ParseScheduleFromExcel(DataTableCollection data, PracticeRepository practiceRepository, ScheduleRepository scheduleRepository, CompetenceRepository competenceRepository,int auditorehours)
+        public static void ParseScheduleFromExcel(DataTableCollection data, PracticeRepository practiceRepository, ScheduleRepository scheduleRepository, CompetenceRepository competenceRepository, int auditorehours)
         {
 
 
@@ -29,7 +29,7 @@ namespace ThesisWork.Parsers
                 string practiceSemestr = "";
                 string educationYear = "";
                 int NullCount = 0;
-                
+
                 foreach (DataRow row in table.Rows)
                 {
                     Debug.WriteLine(NullCount);
@@ -43,7 +43,7 @@ namespace ThesisWork.Parsers
                     {
                         break;
                     }
-                    if (row[0].ToString().Replace(" ","")=="")
+                    if (row[0].ToString().Replace(" ", "") == "")
                     {
                         NullCount++;
                         continue;
@@ -52,8 +52,8 @@ namespace ThesisWork.Parsers
                     {
                         NullCount = 0;
                     }
-                   
-                    
+
+
                     if (row[0].ToString().ToLower().Contains("практика") || row[0].ToString().ToLower().Contains("семестр"))
                     {
 
@@ -74,12 +74,12 @@ namespace ThesisWork.Parsers
                     {
 
 
-                       
+
                         practice.PracticeView = row[6].ToString();
                         practice.PracticeType = row[7].ToString();
 
-                        
-                        schedule.EducationYear = educationYear.Replace("/","-");
+
+                        schedule.EducationYear = educationYear.Replace("/", "-");
                         practice.Semestr = practiceSemestr;
                         practice.Name = practiceName;
 
@@ -97,11 +97,11 @@ namespace ThesisWork.Parsers
                         schedule.SchedulePage = table.TableName;
                         string year = row[4].ToString().ToLower().Split("по")[1].Replace(" ", "").Split(".")[2].Split("г")[0];
 
-                        
+
                         schedule.StartDate = DateTime.ParseExact(row[4].ToString().ToLower().Split("с")[1].Replace(" ", "").Split("по")[0] + "." + year, "d.M.yyyy", null);
-                       
+
                         schedule.EndDate = DateTime.ParseExact(row[4].ToString().ToLower().Split("по")[1].Replace(" ", "").Split("г")[0], "d.M.yyyy", null);
-                        
+
 
                         #region Hours
                         schedule.StudentsNumber = studentsViewModel.GetStudentsCount(schedule);
@@ -142,35 +142,39 @@ namespace ThesisWork.Parsers
                         List<Competence> competences = new List<Competence>();
                         foreach (var item in row[5].ToString().Split("\n"))
                         {
-                           
+
                             CompetenceRepository repos = new CompetenceRepository();
 
                             Competence competence = new Competence();
 
-                            if (item != "" )
+                            if (item != ""&& item!=" ")
                             {
 
 
-                                
-                              
-                                if (!repos.Contains(item))
+                                competence.ThisCompetence = item;
+
+                                if (!scheduleRepository.ContainsCompetence(item))
                                 {
-                                    competence.ThisCompetence = item;
-                                    scheduleRepository.SaveCompetence(competence);
                                    
-                                    competences.Add(competence);
+                                    scheduleRepository.SaveCompetence(competence);
+
+                                  
+                                }
+                                else
+                                {
+                                    competence = scheduleRepository.SelectCompetence(competence);
                                 }
 
-                               
+                                competences.Add(competence);
 
                             }
-                            
+
                         }
                         schedule.Competences = competences;
                         scheduleRepository.SaveSchedule(schedule);
                         scheduleRepository.Save();
-                    
-                        
+
+
 
 
                     }

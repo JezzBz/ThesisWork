@@ -24,6 +24,8 @@ namespace ThesisWork.Forms.ResponsibleForms
                 practiceBases.Add(null);
             }
             dataGridView1.DataSource = practiceBases;
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[4].Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

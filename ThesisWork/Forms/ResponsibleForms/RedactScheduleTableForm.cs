@@ -73,11 +73,23 @@ namespace ThesisWork.Forms.ResponsibleForms
         
             if (FileDialog.ShowDialog() == DialogResult.OK)
             {
-                using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
+                try
                 {
-                    textFileName.Text = FileDialog.FileName;
-                    fileName = FileDialog.FileName;
-                    changeMarker = true;
+                    using (var stream = File.Open(FileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        textFileName.Text = FileDialog.FileName;
+                        fileName = FileDialog.FileName;
+                        changeMarker = true;
+                    }
+                }
+                catch (IOException)
+                {
+                    textBox1.Text = "";
+                    label1.Location = new Point(530, 55);
+                    label1.Text = "Файл занят другим процессом!";
+                    label1.ForeColor = Color.Red;
+                    label1.AutoSize = true;
+                    Controls.Add(label1);
                 }
             }
 
@@ -102,6 +114,11 @@ namespace ThesisWork.Forms.ResponsibleForms
             {
                 e.Handled = true;
             }
+        }
+
+        private void PracticeSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
