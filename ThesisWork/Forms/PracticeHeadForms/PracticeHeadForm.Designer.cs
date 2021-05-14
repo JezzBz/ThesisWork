@@ -35,7 +35,9 @@ namespace ThesisWork.Forms
             this.Statement = new System.Windows.Forms.Button();
             this.Report = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.practiceSchedule)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // practiceSchedule
@@ -48,11 +50,11 @@ namespace ThesisWork.Forms
             this.practiceSchedule.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.practiceSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.practiceSchedule.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.practiceSchedule.Location = new System.Drawing.Point(-2, 233);
+            this.practiceSchedule.Location = new System.Drawing.Point(374, 233);
             this.practiceSchedule.Name = "practiceSchedule";
             this.practiceSchedule.RowHeadersWidth = 51;
             this.practiceSchedule.RowTemplate.Height = 29;
-            this.practiceSchedule.Size = new System.Drawing.Size(1265, 428);
+            this.practiceSchedule.Size = new System.Drawing.Size(888, 428);
             this.practiceSchedule.TabIndex = 0;
             this.practiceSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PracticeSchedule_CellContentClick);
             // 
@@ -102,11 +104,33 @@ namespace ThesisWork.Forms
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.Location = new System.Drawing.Point(1, 233);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 10;
+            this.dataGridView1.RowTemplate.Height = 29;
+            this.dataGridView1.Size = new System.Drawing.Size(377, 428);
+            this.dataGridView1.TabIndex = 6;
+            // 
             // PracticeHeadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Report);
             this.Controls.Add(this.Statement);
@@ -117,6 +141,7 @@ namespace ThesisWork.Forms
             this.Text = "д.";
             this.Load += new System.EventHandler(this.PracticeHeadForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.practiceSchedule)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -129,5 +154,6 @@ namespace ThesisWork.Forms
         private System.Windows.Forms.Button Statement;
         private System.Windows.Forms.Button Report;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

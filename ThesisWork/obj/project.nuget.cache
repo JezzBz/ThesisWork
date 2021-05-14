@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "qL6zN3+4oEAhqZ359Zk9sVKIlxicFStr+IM/ltgN/q5AJFxiAjiWKrSoehNhlh/vD4tmwM0RC2zcFrF1lhOTbg==",
+  "dgSpecHash": "E9zgwtOsD0N0C5D/bg7GEyPdeKn/0Rw6RxXi3aUli+YiIaW2uwZ8n9uy2C4xShZKWrPWqy1kyXLrNhnu56+cWQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\vebgh\\source\\repos\\ThesisWork\\ThesisWork\\ThesisWork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vebgh\\.nuget\\packages\\exceldatareader\\3.6.0\\exceldatareader.3.6.0.nupkg.sha512",
     "C:\\Users\\vebgh\\.nuget\\packages\\exceldatareader.dataset\\3.6.0\\exceldatareader.dataset.3.6.0.nupkg.sha512",
+    "C:\\Users\\vebgh\\.nuget\\packages\\fastmember\\1.5.0\\fastmember.1.5.0.nupkg.sha512",
     "C:\\Users\\vebgh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\vebgh\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\vebgh\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

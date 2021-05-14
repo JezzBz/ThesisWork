@@ -60,7 +60,14 @@ namespace ThesisWork.Repository
         {
             DataBase.Students.Attach(student);
         }
-        
-        
+        public IEnumerable<string> SelectBySchdeule(IEnumerable<PracticeSchedule> schedules) 
+        {
+            List<string> practices = new List<string>();
+            foreach  ( var item in schedules )
+            {
+                practices.Add(DataBase.Practices.FirstOrDefault(x => x.Id == item.PracticeId).Name);
+            }
+            return practices;
+        }
     }
 }

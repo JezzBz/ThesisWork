@@ -1,4 +1,5 @@
 ﻿
+using FastMember;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,23 +18,24 @@ namespace ThesisWork.Forms
     {
         User User = new User();
         ScheduleRepository scheduleRepository = new ScheduleRepository();
+        PracticeRepository practiceRepository = new PracticeRepository();
         public PracticeHeadForm(User user)
         {
             User = user;
             FormClosed += new FormClosedEventHandler(Form_Closed);
-            if (user.Role=="Ответственный по практике")
+            if (user.Role == "Ответственный по практике")
             {
                 Button ToResponsible = new Button();
                 ToResponsible.Left = 828;
                 ToResponsible.Top = 50;
                 ToResponsible.Text = "Войти как ответственный по практике";
-                ToResponsible.AutoSize=true;
-                ToResponsible.Click+= ToResponsibleOnClick;
-                
+                ToResponsible.AutoSize = true;
+                ToResponsible.Click += ToResponsibleOnClick;
+
                 Controls.Add(ToResponsible);
-                
+
             }
-            else if(user.Role== "Зав. Кафедрой")
+            else if (user.Role == "Зав. Кафедрой")
             {
                 Button ToResponsible = new Button();
                 ToResponsible.Left = 828;
@@ -44,9 +46,22 @@ namespace ThesisWork.Forms
 
                 Controls.Add(ToResponsible);
             }
-            
+
             InitializeComponent();
-            practiceSchedule.DataSource = scheduleRepository.ScheduleInfo(user.FCs).ToList();
+            IEnumerable<PracticeSchedule> practiceSchedules = scheduleRepository.ScheduleInfo(user.FCs).ToList();
+            DataTable table = new DataTable();
+            table.Columns.Add("Наименование практики\n\n");
+           
+            foreach (var item in practiceRepository.SelectBySchdeule(practiceSchedules))
+            {
+                table.Rows.Add(item);
+            }
+            dataGridView1.DataSource =table;
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            practiceSchedule.DataSource = practiceSchedules;
         }
 
         private void PracticeHeadForm_Load(object sender, EventArgs e)
@@ -61,7 +76,7 @@ namespace ThesisWork.Forms
         {
             Hide();
             ResponsibleForm responsible = new ResponsibleForm(User);
-            responsible.Text = User.FCs+" - Ответственный по практике";
+            responsible.Text = User.FCs + " - Ответственный по практике";
             responsible.Show();
         }
         private void ToDepartamenrOnClick(object sender, EventArgs eventArgs)
