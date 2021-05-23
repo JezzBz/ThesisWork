@@ -10,8 +10,8 @@ using ThesisWork.Repository;
 namespace ThesisWork.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210514024244_tes")]
-    partial class tes
+    [Migration("20210519182159_sas")]
+    partial class sas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -312,17 +312,18 @@ namespace ThesisWork.Migrations
                         .HasColumnName("Направление");
 
                     b.Property<string>("EducationForm")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Форма обучения");
 
                     b.Property<string>("EducationLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Уровень образования");
 
+                    b.Property<string>("EducationYear")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Учебный год");
+
                     b.Property<string>("VectorName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Наименование направления");
 

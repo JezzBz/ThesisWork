@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ThesisWork.Migrations
 {
-    public partial class tes : Migration
+    public partial class sas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -105,9 +105,10 @@ namespace ThesisWork.Migrations
                 columns: table => new
                 {
                     Направление = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Наименованиенаправления = table.Column<string>(name: "Наименование направления", type: "nvarchar(max)", nullable: false),
-                    Уровеньобразования = table.Column<string>(name: "Уровень образования", type: "nvarchar(max)", nullable: false),
-                    Формаобучения = table.Column<string>(name: "Форма обучения", type: "nvarchar(max)", nullable: false)
+                    Наименованиенаправления = table.Column<string>(name: "Наименование направления", type: "nvarchar(max)", nullable: true),
+                    Учебныйгод = table.Column<string>(name: "Учебный год", type: "nvarchar(max)", nullable: true),
+                    Уровеньобразования = table.Column<string>(name: "Уровень образования", type: "nvarchar(max)", nullable: true),
+                    Формаобучения = table.Column<string>(name: "Форма обучения", type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -133,10 +133,31 @@ namespace ThesisWork.Parsers
 
                         #endregion
 
-
-
-
+                        
+                        foreach  (var item in practiceRepository.GetStudentsByGroup(schedule.GroupNumber,schedule.EducationYear).ToList())
+                        {
+                            PracticeBase practiceBase = new PracticeBase();
+                            scheduleRepository.AttachStudent(item);
+                            practiceBase.CompanyName = "Казанский национальный исследовательский технический университет им. А. Н. Туполева-КАИ";
+                            practiceBase.Index = "420111";
+                            practiceBase.Area = "РТ";
+                            practiceBase.City = "Казань";
+                            practiceBase.Street = "Большая Красная";
+                            practiceBase.Building = "55";
+                            practiceBase.DocumentNumber = "000000";
+                            practiceBase.DirectorFCs = "Гильмутдинов А.Х.";
+                            practiceBase.DirectorPos = "Ректор";
+                            practiceBase.ResponsibleFCs = "Кожевников О.Ю.";
+                            practiceBase.ResponsiblePost = "зав. лабораторией";
+                            practiceBase.Group = schedule.GroupNumber;
+                            practiceBase.PracticeSchedule = schedule;
+                            practiceBase.EducationYear = schedule.EducationYear;
+                            practiceBase.Student = item;
+                            scheduleRepository.SavePracticeBase(practiceBase);
+                        }
+                        practiceRepository.AddVector(schedule.Vector,schedule.EducationYear);
                         practiceRepository.SavePractice(practice);
+
                         practiceRepository.Save();
                         schedule.PracticeId = practiceRepository.Select(practice).Id;
                         List<Competence> competences = new List<Competence>();
@@ -172,6 +193,7 @@ namespace ThesisWork.Parsers
                         }
                         schedule.Competences = competences;
                         scheduleRepository.SaveSchedule(schedule);
+                        
                         scheduleRepository.Save();
 
 

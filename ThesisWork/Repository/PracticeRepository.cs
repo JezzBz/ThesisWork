@@ -19,11 +19,38 @@ namespace ThesisWork.Repository
             }
             
         }
+        public void AddVector(string Vector,string year)
+        {
+            if (!DataBase.Specialties.Any(x=>x.Vector==Vector))
+            {
+                Specialty specialty = new Specialty();
+                specialty.Vector = Vector;
+                specialty.EducationYear = year;
+                
+                DataBase.Specialties.Add(specialty);
+            }
+        }
         public Practice Select(Practice practice)
         {
             return DataBase.Practices.FirstOrDefault(x => x.Name == practice.Name && x.Semestr == practice.Semestr && x.PracticeType == practice.PracticeType && x.PracticeView == practice.PracticeView);
         }
         public IEnumerable<PracticeBase> GetAll() => DataBase.PracticeBases.Select(x => x);
+
+        public IEnumerable<Specialty> GetSpecialties() => DataBase.Specialties.Select(x=>x);
+        public bool UpdateSpeciality(IEnumerable<Specialty> specialties)
+        {
+            try
+            {
+                DataBase.Specialties.UpdateRange(specialties);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+        public IEnumerable<Student> GetStudentsByGroup(string group, string year) => DataBase.Students.Where(x => x.GroupNumber == group && x.SudtingYear == year).Select(x => x);
         public bool UpdatePracticeBaseTable(IEnumerable<PracticeBase>practiceBases)
         {
             try

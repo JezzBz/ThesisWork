@@ -72,5 +72,11 @@ namespace ThesisWork.Forms
             RedactStudentsTableForm form = new RedactStudentsTableForm();
             form.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RedactSpecialtiesTableForm form = new RedactSpecialtiesTableForm();
+            form.ShowDialog();
+        }
     }
 }

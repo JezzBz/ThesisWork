@@ -16,15 +16,18 @@ namespace ThesisWork.Models
        public string Vector { get; set; }
 
        [Column("Наименование направления")]
-       [Required]
+     
        public string VectorName { get; set; }
-        
-       [Column("Уровень образования")]
-       [Required]
+        [Column("Учебный год")]
+
+        public string EducationYear { get; set; }
+
+        [Column("Уровень образования")]
+       
        public string EducationLevel { get; set; }
 
         [Column("Форма обучения")]
-        [Required]
+        
         public string EducationForm { get; set; }
 
 

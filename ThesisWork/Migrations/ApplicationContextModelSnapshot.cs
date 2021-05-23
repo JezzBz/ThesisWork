@@ -310,17 +310,18 @@ namespace ThesisWork.Migrations
                         .HasColumnName("Направление");
 
                     b.Property<string>("EducationForm")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Форма обучения");
 
                     b.Property<string>("EducationLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Уровень образования");
 
+                    b.Property<string>("EducationYear")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Учебный год");
+
                     b.Property<string>("VectorName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Наименование направления");
 

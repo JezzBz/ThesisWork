@@ -72,3 +72,5 @@ C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\Thesi
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\Interop.Microsoft.Office.Interop.Word.dll
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.csproj.ResolveComReference.cache
 C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\bin\Debug\net5.0-windows\FastMember.dll
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.PracticeHeadForms.StudentsRepotForm.resources
+C:\Users\vebgh\source\repos\ThesisWork\ThesisWork\obj\Debug\net5.0-windows\ThesisWork.Forms.ResponsibleForms.RedactSpecialtiesTableForm.resources

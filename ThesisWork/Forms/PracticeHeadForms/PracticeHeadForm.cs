@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ThesisWork.Forms.PracticeHeadForms;
 using ThesisWork.Models;
 using ThesisWork.Repository;
 
@@ -96,6 +97,12 @@ namespace ThesisWork.Forms
         {
             scheduleRepository.UpdateRange((IEnumerable<PracticeSchedule>)practiceSchedule.DataSource);
             scheduleRepository.Save();
+        }
+
+        private void StudentsPattern_Click(object sender, EventArgs e)
+        {
+            StudentsRepotForm form = new StudentsRepotForm(User.FCs);
+            form.ShowDialog();
         }
     }
 }

@@ -16,8 +16,19 @@ namespace ThesisWork.Repository
             string correctFcs = directorFcs.Split(" ")[0] +" "+ directorFcs.Split(" ")[1][0] + "." + directorFcs.Split(" ")[2][0] + ".";
             return DataBase.PracticeSchedule.Select(x => x).Where(x => x.HeadFcs.ToLower() == correctFcs.ToLower());
         }
+        public void SavePracticeBase(PracticeBase practiceBase)
+        {
+            if (!DataBase.PracticeBases.Any(x => x.Student == practiceBase.Student))
+            {
+                DataBase.PracticeBases.Add(practiceBase);
+            }
 
 
+        }
+        public void AttachStudent(Student student)
+        {
+            DataBase.Students.Attach(student);
+        }
         public IEnumerable<PracticeSchedule> SelectAll() => DataBase.PracticeSchedule.Select(x => x);
         public void SaveSchedule(PracticeSchedule schedule)
         {

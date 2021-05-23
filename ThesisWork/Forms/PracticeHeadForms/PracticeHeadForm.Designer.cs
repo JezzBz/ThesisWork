@@ -75,6 +75,7 @@ namespace ThesisWork.Forms
             this.StudentsPattern.TabIndex = 2;
             this.StudentsPattern.Text = "Шаблоны отчетов для студентов";
             this.StudentsPattern.UseVisualStyleBackColor = true;
+            this.StudentsPattern.Click += new System.EventHandler(this.StudentsPattern_Click);
             // 
             // Statement
             // 

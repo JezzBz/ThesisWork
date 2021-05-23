@@ -13,8 +13,8 @@ namespace ThesisWork.Repository
         private static readonly ApplicationContext DataBase = new ApplicationContext();
         public int GetStudentsNumberByGroup(PracticeSchedule practiceSchedule) => DataBase.Students.Count(x => x.GroupNumber == practiceSchedule.GroupNumber && x.SudtingYear == practiceSchedule.EducationYear);
         public IEnumerable<Student> GetAll() => DataBase.Students.Select(x => x);
-
-
+        public IEnumerable<string> SelectGroups(string Fcs) => DataBase.PracticeSchedule.Where(x => x.HeadFcs == Fcs).Select(x => x.GroupNumber).Distinct();
+        public IEnumerable<string> GetYearByHead(string FCs) => DataBase.PracticeSchedule.Where(x => x.HeadFcs == FCs).Select(x=>x.EducationYear).Distinct();
         public void UpdateTable(IEnumerable<Student> students)
         {
             DataBase.Students.UpdateRange(students);
@@ -38,7 +38,12 @@ namespace ThesisWork.Repository
 
             return count > 0;
         }
-
+        public IEnumerable<Competence> IncludeScheduleCompetence(PracticeSchedule schedule) => DataBase.Competences.Where(c=>c.PracticesSchedule.Contains(schedule)).Select(x=>x);
+        public string GetVectorName(PracticeSchedule schedule) => DataBase.Specialties.FirstOrDefault(x => x.Vector == schedule.Vector).VectorName;
+        public PracticeSchedule GetSchedule(string year, string group, string FCs) => DataBase.PracticeSchedule.FirstOrDefault(x=>x.EducationYear==year&&x.GroupNumber==group&&x.HeadFcs==FCs);
+        public PracticeBase GetPracticeBase(PracticeSchedule schedule) => DataBase.PracticeBases.Where(x => x.PracticeSchedule == schedule).FirstOrDefault();
+        public Practice GetPractice(PracticeSchedule schedule) => DataBase.Practices.FirstOrDefault(x=>x.Id==schedule.PracticeId);
+        public Teacher GetTeacher(string fcs) => DataBase.Teachers.FirstOrDefault(x=>x.FCs==fcs);
         public List<string> SelectYears()
         {
             List<string> Years = new List<string>();
@@ -53,6 +58,7 @@ namespace ThesisWork.Repository
             }
             return Years;
         }
+        public int GetPracticeShdelueId(string Fcs,string group,string year) => DataBase.PracticeSchedule.FirstOrDefault(x => x.HeadFcs == Fcs&&x.GroupNumber==group&&x.EducationYear==year).Id;
         public void AddStudentInPracticeBase(IEnumerable<PracticeBase> bases)
         {
             DataBase.PracticeBases.AddRange(bases);
